@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/imLogo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/logo"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+
+    <com.example.admin.thuctaptotnghiep.views.CustomTextViewItalic
+        android:layout_width="wrap_content"
+        android:textColor="#ffffff"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@id/imLogo"
+        android:text="@string/app_name_ver2"
+        android:textSize="35sp"
+        android:id="@+id/tvLogo"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_height="wrap_content" />
+
+    <com.example.admin.thuctaptotnghiep.views.CustomEditText
+        android:layout_marginTop="70dp"
+        android:layout_below="@id/tvLogo"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:padding="10dp"
+        android:id="@+id/edtUserNameLogin"
+        android:drawableLeft="@drawable/icon_user"
+        android:drawablePadding="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/edt_background_border_top"
+        android:hint="@string/username"/>
+    <com.example.admin.thuctaptotnghiep.views.CustomEditText
+        android:layout_width="match_parent"
+        android:layout_below="@id/edtUserNameLogin"
+        android:layout_height="50dp"
+        android:padding="10dp"
+        android:id="@+id/edtPasswordLogin"
+        android:drawableLeft="@drawable/icon_password"
+        android:drawablePadding="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:inputType="textPassword"
+        android:background="@drawable/edt_background_border_bottom"
+        android:hint="@string/password"/>
+    <com.example.admin.thuctaptotnghiep.views.CustomFontTextView
+        android:padding="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/edtPasswordLogin"
+        android:id="@+id/tvRegisterUser"
+        android:layout_marginRight="20dp"
+        android:layout_width="wrap_content"
+        android:textColor="#ffffff"
+        android:text="@string/register_user"
+        android:layout_marginBottom="20dp"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_height="wrap_content" />
+
+    <com.example.admin.thuctaptotnghiep.views.CustomFontTextView
+        android:layout_width="wrap_content"
+        android:textColor="#ffffff"
+        android:text="@string/or"
+        android:padding="10dp"
+        android:id="@+id/tvOr"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tvRegisterUser"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:gravity="center"
+        android:layout_below="@id/tvOr"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imLoginFacebook"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/facebook"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+
+
+        <ImageView
+            android:id="@+id/imLoginGoogle"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/google"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+    </LinearLayout>
+
+
+</RelativeLayout>

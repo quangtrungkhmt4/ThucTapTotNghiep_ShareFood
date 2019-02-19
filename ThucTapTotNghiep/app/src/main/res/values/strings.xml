@@ -113,4 +113,8 @@
     <string name="list_booking">Danh sách đăng ký phòng</string>
     <string name="history_booking">Lịch sử đăng ký</string>
     <string name="new_booking">Một người dùng vừa đăng ký đặt phòng của bạn.</string>
+    <string name="check_your_connection">Không có kết nối Internet!</string>
+    <string name="retry">Thử lại</string>
+    <string name="infoFood">Thông tin món ăn</string>
+
 </resources>

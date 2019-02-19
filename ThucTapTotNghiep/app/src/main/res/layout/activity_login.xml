@@ -68,43 +68,56 @@
         style="?android:attr/textAppearanceMedium"
         android:layout_height="wrap_content" />
 
-    <com.example.admin.thuctaptotnghiep.views.CustomFontTextView
-        android:layout_width="wrap_content"
-        android:textColor="#ffffff"
-        android:text="@string/or"
-        android:padding="10dp"
-        android:id="@+id/tvOr"
-        android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true"
+    <Button
         android:layout_below="@id/tvRegisterUser"
         style="?android:attr/textAppearanceMedium"
+        android:textColor="@color/colorPrimary"
+        android:text="@string/login"
+        android:layout_marginTop="40dp"
+        android:id="@+id/btnLogin"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/btn_background_login"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <LinearLayout
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="10dp"
-        android:padding="10dp"
-        android:gravity="center"
-        android:layout_below="@id/tvOr"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <!--<com.example.admin.thuctaptotnghiep.views.CustomFontTextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:textColor="#ffffff"-->
+        <!--android:text="@string/or"-->
+        <!--android:padding="10dp"-->
+        <!--android:id="@+id/tvOr"-->
+        <!--android:layout_marginTop="30dp"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_below="@id/tvRegisterUser"-->
+        <!--style="?android:attr/textAppearanceMedium"-->
+        <!--android:layout_height="wrap_content" />-->
 
-        <ImageView
-            android:id="@+id/imLoginFacebook"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/facebook"
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
+    <!--<LinearLayout-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:padding="10dp"-->
+        <!--android:gravity="center"-->
+        <!--android:layout_below="@id/tvOr"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/imLoginFacebook"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:src="@drawable/facebook"-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="50dp" />-->
 
 
-        <ImageView
-            android:id="@+id/imLoginGoogle"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/google"
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
-    </LinearLayout>
+        <!--<ImageView-->
+            <!--android:id="@+id/imLoginGoogle"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:src="@drawable/google"-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="50dp" />-->
+    <!--</LinearLayout>-->
 
 
 </RelativeLayout>

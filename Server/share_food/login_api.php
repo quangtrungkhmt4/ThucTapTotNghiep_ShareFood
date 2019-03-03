@@ -6,7 +6,7 @@
 
 	class User{
 		function User($id, $user, $pass, $name, $permission, $isOnline){
-			$this -> idUser = $id;
+			$this -> id = $id;
 			$this -> userName = $user;
 			$this -> password = $pass;
 			$this -> name = $name;
@@ -16,11 +16,11 @@
 	}
 	$arrUser = array();
 	if (strlen($u) > 0 && strlen($p) > 0 ) {
-		$query = "SELECT * FROM tbluser WHERE FIND_IN_SET('$u', userName) AND FIND_IN_SET('$p', password)";
+		$query = "SELECT * FROM customer WHERE FIND_IN_SET('$u', userName) AND FIND_IN_SET('$p', password)";
 		$data = mysqli_query($connect, $query);
 		if ($data) {
 			while ($row = mysqli_fetch_assoc($data)) {
-				array_push($arrUser, new User($row['idUser'], $row['userName'], $row['password'], $row['name'], $row['permission'], $row['isOnline']));
+				array_push($arrUser, new User($row['id'], $row['userName'], $row['password'], $row['name'], $row['permission'], $row['isOnline']));
 			}
 			// if (count($arrUser) > 0) {
 			// 	echo json_encode($post_data);

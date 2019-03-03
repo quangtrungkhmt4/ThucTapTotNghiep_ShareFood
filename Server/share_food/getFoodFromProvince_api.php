@@ -5,34 +5,36 @@
 
 	class Food{
 		function Food($id, $name, $image, $recipe, $idCate, $desc){
-			$this -> idFood = $id;
+			$this -> id = $id;
 			$this -> name = $name;
 			$this -> image = $image;
 			$this -> recipe = $recipe;
-			$this -> idFoodCategory = $idCate;
-			$this -> description = $desc;
+			$this -> category = $idCate;
+			$this -> desc = $desc;
 		}
 	}
 
 	if (strlen($p) > 0) {
 		$arrFood = array();
-		$idProvinceQuery = "SELECT idProvince FROM tblprovince WHERE FIND_IN_SET('$p', name)";
+		$idProvinceQuery = "SELECT id FROM province WHERE FIND_IN_SET('$p', name)";
 		$dataProvince = mysqli_query($connect, $idProvinceQuery);
 		if ($dataProvince) {
 			$row = mysqli_fetch_assoc($dataProvince);
-			$idProvince = $row['idProvince'];
+			$idProvince = $row['id'];
 
-			$foodQuery = "SELECT tblfood.idFood, tblfood.name, tblfood.image, tblfood.recipe, tblfood.idFoodCategory, tblfood.description FROM tblmenu INNER JOIN tblfood ON tblmenu.idFood = tblfood.idFood WHERE FIND_IN_SET('$idProvince', tblmenu.idProvince)";
+			$foodQuery = "SELECT DISTINCT food.id, food.name, food.image, food.recipe, food.category, food.desc FROM menu INNER JOIN food ON menu.food = food.id INNER JOIN restaurant ON restaurant.id = menu.restaurant WHERE FIND_IN_SET('$idProvince', restaurant.province)";
 			$dataFood = mysqli_query($connect, $foodQuery);
 			if ($dataFood) {
 				while ($row = mysqli_fetch_assoc($dataFood)) {
-					array_push($arrFood, new Food($row['idFood'], $row['name'], $row['image'], $row['recipe'], $row['idFoodCategory'], $row['description']));
+					array_push($arrFood, new Food($row['id'], $row['name'], $row['image'], $row['recipe'], $row['category'], $row['desc']));
 				}
-				echo json_encode($arrFood);
+				echo (string)json_encode($arrFood);
+				// echo count($arrFood);
 			}
 
 		}else{
-			echo json_encode($arrFood);
+			echo (string)json_encode($arrFood);
+			// echo count($arrFood);
 		}
 
 		// if ($data) {

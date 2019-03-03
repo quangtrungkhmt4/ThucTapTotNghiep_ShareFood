@@ -7,7 +7,7 @@
 
 	class User{
 		function User($id, $user, $pass, $name, $permission, $isOnline){
-			$this -> idUser = $id;
+			$this -> id = $id;
 			$this -> userName = $user;
 			$this -> password = $pass;
 			$this -> name = $name;
@@ -17,29 +17,25 @@
 	}
 	if (strlen($u) > 0 && strlen($p) > 0 && strlen($n) > 0) {
 		$arrUser = array();
-		$query = "SELECT * FROM tbluser WHERE FIND_IN_SET('$u', userName)";
+		$query = "SELECT * FROM customer WHERE FIND_IN_SET('$u', userName)";
 		$data = mysqli_query($connect, $query);
 		if ($data) {
 			while ($row = mysqli_fetch_assoc($data)) {
-				array_push($arrUser, new User($row['idUser'], $row['userName'], $row['password'], $row['name'], $row['permission'], $row['isOnline']));
+				array_push($arrUser, new User($row['id'], $row['userName'], $row['password'], $row['name'], $row['permission'], $row['isOnline']));
 			}
 			if (count($arrUser) > 0) {
-				$ouput -> result = "exists";
-				echo json_encode($ouput);
+				echo "exists";
 			}else{
-				$insert = "INSERT INTO tbluser VALUES(null, '$u', '$p', '$n', 0, 0)";
+				$insert = "INSERT INTO customer VALUES(null, '$u', '$p', '$n', 0, 0)";
 				$dataInsert = mysqli_query($connect, $insert);
 				if ($dataInsert) {
-					$ouput -> result = "true";
-					echo json_encode($ouput);
+					echo "true";
 				}else{
-					$ouput -> result = "false";
-					echo json_encode($ouput);
+					echo "false";
 				}
 			}
 		}
 	}else{
-		$ouput -> result = "false";
-		echo json_encode($ouput);
+		echo "false";
 	}
 ?>

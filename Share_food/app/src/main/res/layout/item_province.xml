@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.example.share_food.views.CustomFontTextView
+        android:layout_width="wrap_content"
+        android:text="hay"
+        android:padding="7dp"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/tvProvinceName"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:layout_marginTop="3dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:background="#DFDDDD"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+</LinearLayout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:tools="http://schemas.android.com/tools"
+    android:padding="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.CardView
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <FrameLayout
+                    android:padding="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_error"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </FrameLayout>
+            </android.support.v7.widget.CardView>
+
+            <com.example.share_food.views.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:padding="10dp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                style="?android:attr/textAppearanceLarge"
+                android:text="@string/check_your_connection"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_gravity="right"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <com.example.share_food.views.CustomFontTextView
+                    android:id="@+id/tvDialogCheckInternetRetry"
+                    android:layout_width="wrap_content"
+                    android:text="@string/retry"
+                    android:padding="10dp"
+                    style="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content" />
+
+                <com.example.share_food.views.CustomFontTextView
+                    android:id="@+id/tvDialogCheckInternetCancel"
+                    android:layout_width="wrap_content"
+                    android:text="@string/cancel"
+                    android:padding="10dp"
+                    style="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

@@ -15,6 +15,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -99,7 +100,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             lat = location.get("lattitude");
             lon = location.get("longitude");
             List<Address> addresses = geocoder.getFromLocation(location.get("lattitude"), location.get("longitude"), 1);
-            String cityName = addresses.get(0).getAdminArea();
+//            String cityName = addresses.get(0).getAdminArea();
+            String cityName = "Hà Nội";
             getAllFoodFollowProvince(cityName);
         } catch (Exception e) {
             e.printStackTrace();
@@ -228,6 +230,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(MainActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                Log.e("-------", error.toString());
             }
         }){
             @Override

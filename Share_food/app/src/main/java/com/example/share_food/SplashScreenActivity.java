@@ -96,7 +96,10 @@ public class SplashScreenActivity extends AppCompatActivity {
                         @Override
                         public void onFinish() {
                             Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
-                            Map<String, Double> location = getLocation();
+//                            Map<String, Double> location = getLocation();
+                            Map<String, Double> location = new HashMap<>();
+                            location.put("lattitude", (double) 21.054386);
+                            location.put("longitude", (double) 105.73511);
                             intent.putExtra("location", (Serializable) location);
                             startActivity(intent);
                             finish();
@@ -149,8 +152,8 @@ public class SplashScreenActivity extends AppCompatActivity {
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
-            map.put("lattitude", (double) 0);
-            map.put("longitude", (double) 0);
+            map.put("lattitude", (double) 21.054386);
+            map.put("longitude", (double) 105.73511);
             return map;
         }
         Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);

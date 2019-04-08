@@ -1,0 +1,11 @@
+package com.sharefood.ShareFood.service.base;
+
+import com.sharefood.ShareFood.model.Restaurant;
+
+import java.util.List;
+
+public interface RestaurantService extends Service<Restaurant> {
+    List<Restaurant> findWithPage(int page);
+
+    int countAll();
+}

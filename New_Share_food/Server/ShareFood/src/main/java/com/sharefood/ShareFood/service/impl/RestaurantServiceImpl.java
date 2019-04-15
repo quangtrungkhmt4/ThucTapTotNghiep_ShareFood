@@ -30,6 +30,16 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
+    public Restaurant findRestaurantById(int id) {
+        return restaurantRepository.findRestaurantById(id);
+    }
+
+    @Override
+    public int blockRestaurant(int id) {
+        return restaurantRepository.blockRestaurant(id);
+    }
+
+    @Override
     public Restaurant insert(Restaurant restaurant) {
         return restaurantRepository.save(restaurant);
     }
@@ -46,6 +56,6 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public Collection<Restaurant> gettAll() {
-        return null;
+        return (Collection<Restaurant>) restaurantRepository.findAll();
     }
 }

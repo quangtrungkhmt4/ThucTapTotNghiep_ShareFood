@@ -155,12 +155,7 @@ public class PriceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 }
             });
 
-            imAddCart.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    clickItemListener.onButtonClick(itemView, getLayoutPosition());
-                }
-            });
+            imAddCart.setVisibility(View.GONE);
         }
     }
 }

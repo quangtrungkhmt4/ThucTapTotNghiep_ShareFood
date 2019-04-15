@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">ShareFoodManagement</string>
+    <string name="welcome">Chào mừng bạn đến Share Food Management</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="user_name">Tên tài khoản</string>
+    <string name="password">Mật khẩu</string>
+    <string name="login">Đăng nhập</string>
+    <string name="insert_info">Bạn cần nhập đủ thông tin</string>
+    <string name="login_fail">Tên tài khoản hoặc mật khẩu không chính xác.</string>
+    <string name="login_success">Đăng nhập thành công.</string>
+    <string name="management_list">Danh mục quản lý</string>
+    <string name="restaurant_manager">Quản lý nhà hàng</string>
+    <string name="user_manager">Quản lý tài khoản</string>
+    <string name="category_manager">Quản lý thực đơn</string>
+    <string name="error">Lỗi không xác định</string>
+    <string name="restaurant_info">Thông tin nhà hàng</string>
+    <string name="province_info">Thông tin tỉnh</string>
+    <string name="delete_success">Xóa thành công</string>
+    <string name="block_success">Đã khóa thành công</string>
+</resources>

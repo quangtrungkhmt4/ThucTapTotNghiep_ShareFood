@@ -8,4 +8,8 @@ public interface RestaurantService extends Service<Restaurant> {
     List<Restaurant> findWithPage(int page);
 
     int countAll();
+
+    Restaurant findRestaurantById(int id);
+
+    int blockRestaurant(int id);
 }

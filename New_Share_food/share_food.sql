@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2019 at 08:48 AM
+-- Generation Time: Apr 15, 2019 at 06:24 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -441,6 +441,7 @@ CREATE TABLE `tbl_restaurants` (
   `phone` varchar(20) NOT NULL,
   `website` text,
   `logo` text NOT NULL,
+  `lock` int(11) NOT NULL,
   `id_province` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -448,11 +449,11 @@ CREATE TABLE `tbl_restaurants` (
 -- Dumping data for table `tbl_restaurants`
 --
 
-INSERT INTO `tbl_restaurants` (`id_restaurant`, `name`, `created_at`, `time_open`, `time_close`, `address`, `phone`, `website`, `logo`, `id_province`) VALUES
-(1, 'Nhà hàng món Huế', 'Sở Kế hoạch đầu tư TP Hà Nội cấp ngày 08/10/2013', '06:30', '22:00', 'Tầng 2 tòa nhà VTC Online, Số 18 Tam Trinh, Q. Hai Bà Trưng, ​​Hà Nội\r\n\r\n', '1900 6005', 'https://pasgo.vn/chuoi-nha-hang/nha-hang-mon-hue-ha-noi-623?gclid=Cj0KCQjwnKHlBRDLARIsAMtMHDHobBWEtnRS1cJqC85pUILu5uHV4HVeyTL270Xvxe-Ty4XIAxO1HvYaAvZmEALw_wcB', 'https://cdn.vatgia.vn/pictures/fullsize/2015/10/06/rcm1444123832.jpg', 25),
-(2, 'Nhà hàng Maison', 'Thành lập 24/5/2010', '06:30', '22:10', '36A Bán Đảo, Hoàng Cầu, Chợ Dừa, Đống Đa, Hà Nội', ' 0899349797', 'https://nhahangmaison.vn/', 'https://nhahangmaison.vn/wp-content/uploads/2018/12/logo-nha-hang-maison.png', 25),
-(3, 'Nhà hàng Sen', '12/3/2006', '10:30', '20:30', ' 614 Lạc Long Quân, Tây Hồ, Hà Nội\r\n\r\n', '0437199857', 'https://jamja.vn/thuong-hieu/nha-hang-maison-sens', 'https://cdn.jamja.vn/blog/wp-content/themes/Newspaper/jamja_img/logo-rectangle.png', 25),
-(4, 'Nhà hàng Nấm Việt Hà Thành', '2/3/2009', '10:30', '21:00', 'C8 Giảng Võ, Hà Nội', '0437939179', 'https://jamja.vn/thuong-hieu/he-thong-555', 'https://cdn.jamja.vn/blog/wp-content/themes/Newspaper/jamja_img/logo-rectangle.png', 25);
+INSERT INTO `tbl_restaurants` (`id_restaurant`, `name`, `created_at`, `time_open`, `time_close`, `address`, `phone`, `website`, `logo`, `lock`, `id_province`) VALUES
+(1, 'Nhà hàng món Huế', 'Sở Kế hoạch đầu tư TP Hà Nội cấp ngày 08/10/2013', '06:30', '22:00', 'Tầng 2 tòa nhà VTC Online, Số 18 Tam Trinh, Q. Hai Bà Trưng, ​​Hà Nội\r\n\r\n', '1900 6005', 'https://pasgo.vn/chuoi-nha-hang/nha-hang-mon-hue-ha-noi-623?gclid=Cj0KCQjwnKHlBRDLARIsAMtMHDHobBWEtnRS1cJqC85pUILu5uHV4HVeyTL270Xvxe-Ty4XIAxO1HvYaAvZmEALw_wcB', 'https://cdn.vatgia.vn/pictures/fullsize/2015/10/06/rcm1444123832.jpg', 1, 25),
+(2, 'Nhà hàng Maison', 'Thành lập 24/5/2010', '06:30', '22:10', '36A Bán Đảo, Hoàng Cầu, Chợ Dừa, Đống Đa, Hà Nội', ' 0899349797', 'https://nhahangmaison.vn/', 'https://nhahangmaison.vn/wp-content/uploads/2018/12/logo-nha-hang-maison.png', 0, 25),
+(3, 'Nhà hàng Sen', '12/3/2006', '10:30', '20:30', ' 614 Lạc Long Quân, Tây Hồ, Hà Nội', '0437199857', 'https://jamja.vn/thuong-hieu/nha-hang-maison-sens', 'https://cdn.jamja.vn/blog/wp-content/themes/Newspaper/jamja_img/logo-rectangle.png', 0, 25),
+(4, 'Nhà hàng Nấm Việt Hà Thành', '2/3/2009', '10:30', '21:00', 'C8 Giảng Võ, Hà Nội', '0437939179', 'https://jamja.vn/thuong-hieu/he-thong-555', 'https://cdn.jamja.vn/blog/wp-content/themes/Newspaper/jamja_img/logo-rectangle.png', 0, 25);
 
 -- --------------------------------------------------------
 
@@ -487,6 +488,13 @@ CREATE TABLE `tbl_users` (
   `permission` int(11) NOT NULL,
   `lock` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_users`
+--
+
+INSERT INTO `tbl_users` (`id_user`, `user_name`, `password`, `name`, `phone`, `address`, `avatar`, `gender`, `created_at`, `permission`, `lock`) VALUES
+(1, 'ngoc', '123456', 'Ngô Thị Minh Ngọc', '0979391619', 'Nam Định', 'https://minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg', 'Nữ', '14/04/2019', 1, 0);
 
 --
 -- Indexes for dumped tables
@@ -653,7 +661,7 @@ ALTER TABLE `tbl_restaurant_comments`
 -- AUTO_INCREMENT for table `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables

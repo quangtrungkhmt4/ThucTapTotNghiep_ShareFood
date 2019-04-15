@@ -20,7 +20,7 @@ public class Restaurant extends AbstractModel {
     @Id
     @Column(name = "id_restaurant")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_price;
+    private int id_restaurant;
 
     @Column(name = "name")
     private String name;
@@ -45,6 +45,9 @@ public class Restaurant extends AbstractModel {
 
     @Column(name = "logo")
     private String logo;
+
+    @Column(name = "lock")
+    private int lock;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_province")

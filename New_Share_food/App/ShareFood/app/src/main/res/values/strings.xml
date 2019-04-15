@@ -20,4 +20,10 @@
     <string name="pay">Thanh toán</string>
     <string name="count_none">Giỏ hàng trống</string>
     <string name="max_count">Số lượng tối đa là 99</string>
+    <string name="food_detail">Thông tin món ăn</string>
+    <string name="call">Liên hệ đặt món</string>
+    <string name="res_info">Thông tin nhà hàng</string>
+    <string name="food_info">Thông tin món ăn</string>
+    <string name="recipe">Công thức</string>
+    <string name="comments">Bình luận</string>
 </resources>

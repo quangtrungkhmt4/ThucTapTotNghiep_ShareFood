@@ -10,6 +10,7 @@ public class API {
     public static final String STORAGE = "http://192.168.15.107/storage_share_food/";
     //user
     public static final String LOGIN = IP + "users";
+    public static final String GET_ALL_USER = IP + "users/all";
 
     //restaurant
     public static final String GET_ALL_RESTAURANT = IP + "restaurants/getAll";

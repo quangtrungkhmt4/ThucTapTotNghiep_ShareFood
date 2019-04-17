@@ -20,5 +20,5 @@ public class User  extends AbstractModel{
     private String gender;
     private String created_at;
     private int permission;
-    private int lock;
+    private int locked;
 }

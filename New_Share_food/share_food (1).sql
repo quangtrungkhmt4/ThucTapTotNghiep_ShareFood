@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2019 at 06:24 PM
+-- Generation Time: Apr 17, 2019 at 05:37 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -486,15 +486,16 @@ CREATE TABLE `tbl_users` (
   `gender` varchar(5) NOT NULL,
   `created_at` text NOT NULL,
   `permission` int(11) NOT NULL,
-  `lock` int(11) NOT NULL
+  `locked` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tbl_users`
 --
 
-INSERT INTO `tbl_users` (`id_user`, `user_name`, `password`, `name`, `phone`, `address`, `avatar`, `gender`, `created_at`, `permission`, `lock`) VALUES
-(1, 'ngoc', '123456', 'Ngô Thị Minh Ngọc', '0979391619', 'Nam Định', 'https://minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg', 'Nữ', '14/04/2019', 1, 0);
+INSERT INTO `tbl_users` (`id_user`, `user_name`, `password`, `name`, `phone`, `address`, `avatar`, `gender`, `created_at`, `permission`, `locked`) VALUES
+(1, 'ngoc', '123456', 'Ngô Th? Minh Ng?c', '0979391619', 'Nam ??nh', 'https://minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg', 'N?', '14/04/2019', 1, 0),
+(2, 'minhngoc', '123456', 'Ng?c Ngô', '123456789', 'Nam ??nh', 'https://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg', 'N?', '17/04/2019', 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -661,7 +662,7 @@ ALTER TABLE `tbl_restaurant_comments`
 -- AUTO_INCREMENT for table `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

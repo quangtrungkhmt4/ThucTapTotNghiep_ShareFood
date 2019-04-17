@@ -37,7 +37,7 @@ public class RestaurantInfoActivity extends AppCompatActivity implements View.On
 
     private ViewPager viewPager;
     private ImageView imgLogo, imBack, imgDelete;
-    private CustomItalyTextView tvName, tvOpen, tvAddress, tvPhone, tvWeb, tvProvince;
+    private CustomItalyTextView tvName, tvOpen, tvAddress, tvPhone, tvWeb, tvProvince, tvStatus;
     private Toolbar toolbar;
     private Restaurant currentRestaurant;
     private ImageAdapter slidingAdapter;
@@ -67,6 +67,7 @@ public class RestaurantInfoActivity extends AppCompatActivity implements View.On
         tvProvince = findViewById(R.id.tvProvinceResInfo);
         viewPager = findViewById(R.id.viewpager_res);
         imgDelete = findViewById(R.id.imgDelete);
+        tvStatus = findViewById(R.id.tvStatusResInfo);
     }
 
     private void initViews() {
@@ -90,6 +91,11 @@ public class RestaurantInfoActivity extends AppCompatActivity implements View.On
         tvPhone.setText(currentRestaurant.getPhone().trim());
         tvWeb.setText(currentRestaurant.getWebsite().trim());
         tvProvince.setText(currentRestaurant.getProvince().getDescription().trim());
+        if (currentRestaurant.getLock() == 0){
+            tvStatus.setText(getString(R.string.active));
+        }else {
+            tvStatus.setText(getString(R.string.lock));
+        }
     }
 
     private void getImages() {

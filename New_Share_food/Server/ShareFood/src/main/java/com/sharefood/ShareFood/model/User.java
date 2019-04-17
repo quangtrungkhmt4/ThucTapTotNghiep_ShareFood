@@ -47,6 +47,6 @@ public class User extends AbstractModel {
     @Column(name = "permission")
     private int permission;
 
-    @Column(name = "lock")
-    private int lock;
+    @Column(name = "locked")
+    private int locked;
 }

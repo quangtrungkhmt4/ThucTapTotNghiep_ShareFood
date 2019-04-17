@@ -1,17 +1,13 @@
 package com.sharefood.ShareFood.controller;
 
-import com.sharefood.ShareFood.model.Restaurant;
 import com.sharefood.ShareFood.model.User;
 import com.sharefood.ShareFood.response.base.Response;
-import com.sharefood.ShareFood.response.extend.RestaurantsResponse;
 import com.sharefood.ShareFood.response.extend.UserResponse;
+import com.sharefood.ShareFood.response.extend.UsersResponse;
 import com.sharefood.ShareFood.service.base.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,6 +22,17 @@ public class UserController extends AbstractController {
     public ResponseEntity<Response> login(@RequestParam("username") String username, @RequestParam("pass") String pass){
         User user = userService.findUserByUserNameAndPass(username, pass);
         return responseData(new UserResponse(user));
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/users/all")
+    public ResponseEntity<Response> login(@RequestParam("permission") int permission, @RequestParam("lock") int lock){
+        List<User> users = userService.findAllByPermissionAndLocked(permission, lock);
+        return responseData(new UsersResponse(users));
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/users")
+    public ResponseEntity<Response> update(@RequestBody User user){
+        return responseData(new UserResponse(userService.update(user)));
     }
 
 }

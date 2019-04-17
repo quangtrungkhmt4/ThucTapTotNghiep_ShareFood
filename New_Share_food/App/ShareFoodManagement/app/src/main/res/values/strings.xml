@@ -19,4 +19,10 @@
     <string name="province_info">Thông tin tỉnh</string>
     <string name="delete_success">Xóa thành công</string>
     <string name="block_success">Đã khóa thành công</string>
+    <string name="active">Tình trạng: Hoạt động</string>
+    <string name="lock">Tình trạng: Khóa</string>
+    <string name="list_user">Tài khoản người dùng</string>
+    <string name="list_manager">Tài khoản quản lý nhà hàng</string>
+    <string name="user_info">Thông tin tài khoản</string>
+    <string name="lock_success">Khóa tài khoản thành công</string>
 </resources>

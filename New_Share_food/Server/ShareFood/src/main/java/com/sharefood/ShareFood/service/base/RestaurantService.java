@@ -12,4 +12,6 @@ public interface RestaurantService extends Service<Restaurant> {
     Restaurant findRestaurantById(int id);
 
     int blockRestaurant(int id);
+
+    Restaurant findRestaurantById_restaurant(int id);
 }

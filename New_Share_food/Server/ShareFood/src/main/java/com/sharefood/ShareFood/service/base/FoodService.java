@@ -12,4 +12,6 @@ public interface FoodService extends Service<Food> {
 
     int countAll();
 
+    Food findFoodById(int id);
+
 }

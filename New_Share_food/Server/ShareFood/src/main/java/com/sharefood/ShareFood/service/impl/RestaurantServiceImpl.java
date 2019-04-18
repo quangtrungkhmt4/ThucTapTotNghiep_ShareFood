@@ -40,6 +40,11 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
+    public Restaurant findRestaurantById_restaurant(int id) {
+        return restaurantRepository.findRestaurantById(id);
+    }
+
+    @Override
     public Restaurant insert(Restaurant restaurant) {
         return restaurantRepository.save(restaurant);
     }

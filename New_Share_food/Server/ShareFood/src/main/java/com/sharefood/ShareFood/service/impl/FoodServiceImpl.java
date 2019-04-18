@@ -35,6 +35,11 @@ public class FoodServiceImpl implements FoodService {
     }
 
     @Override
+    public Food findFoodById(int id) {
+        return foodRepository.findFoodById(id);
+    }
+
+    @Override
     public Food insert(Food food) {
         return foodRepository.save(food);
     }

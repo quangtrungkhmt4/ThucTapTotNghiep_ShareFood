@@ -1,6 +1,7 @@
 package com.sharefood.ShareFood.repository;
 
 import com.sharefood.ShareFood.model.Price;
+import com.sharefood.ShareFood.model.Restaurant;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -13,4 +14,6 @@ public interface PriceRepository extends CrudRepository<Price, Integer> {
 
     @Query(value="SELECT count(*) as count FROM tbl_prices", nativeQuery = true)
     int countAll();
+
+    List<Price> findAllByRestaurant(Restaurant restaurant);
 }

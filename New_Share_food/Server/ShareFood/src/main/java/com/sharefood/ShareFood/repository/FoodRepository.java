@@ -16,4 +16,6 @@ public interface FoodRepository extends CrudRepository<Food, Integer> {
     @Query(value="SELECT count(*) as count FROM tbl_foods", nativeQuery = true)
     int countAll();
 
+    Food findFoodById(int id);
+
 }

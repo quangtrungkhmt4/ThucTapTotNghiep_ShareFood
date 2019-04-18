@@ -14,44 +14,30 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "tbl_restaurants")
-public class Restaurant extends AbstractModel {
+@Table(name = "tbl_food_comments")
+public class FoodComment extends AbstractModel{
 
     @Id
-    @Column(name = "id_restaurant")
+    @Column(name = "id_comment")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "comment")
+    private String comment;
 
     @Column(name = "created_at")
     private String created_at;
 
-    @Column(name = "time_open")
-    private String time_open;
-
-    @Column(name = "time_close")
-    private String time_close;
-
-    @Column(name = "address")
-    private String address;
-
-    @Column(name = "phone")
-    private String phone;
-
-    @Column(name = "website")
-    private String website;
-
-    @Column(name = "logo")
-    private String logo;
-
-    @Column(name = "lock")
-    private int lock;
-
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_province")
+    @JoinColumn(name = "id_user")
     @NotNull
     @JsonIgnoreProperties(value = {"handler","hibernateLazyInitializer","fieldHandler"})
-    private Province province;
+    private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_food")
+    @NotNull
+    @JsonIgnoreProperties(value = {"handler","hibernateLazyInitializer","fieldHandler"})
+    private Food food;
+
 }

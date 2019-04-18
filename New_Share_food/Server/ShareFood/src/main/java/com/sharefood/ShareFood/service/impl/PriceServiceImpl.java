@@ -1,6 +1,7 @@
 package com.sharefood.ShareFood.service.impl;
 
 import com.sharefood.ShareFood.model.Price;
+import com.sharefood.ShareFood.model.Restaurant;
 import com.sharefood.ShareFood.repository.PriceRepository;
 import com.sharefood.ShareFood.service.base.PriceService;
 import lombok.AllArgsConstructor;
@@ -27,6 +28,11 @@ public class PriceServiceImpl implements PriceService {
     @Override
     public int countAll() {
         return priceRepository.countAll();
+    }
+
+    @Override
+    public List<Price> findAllByRestaurant(Restaurant restaurant) {
+        return priceRepository.findAllByRestaurant(restaurant);
     }
 
     @Override

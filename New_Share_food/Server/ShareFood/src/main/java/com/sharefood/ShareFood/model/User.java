@@ -18,7 +18,7 @@ public class User extends AbstractModel {
     @Id
     @Column(name = "id_user")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_user;
+    private int id;
 
     @Column(name = "user_name")
     private String user_name;

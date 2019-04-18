@@ -35,4 +35,9 @@ public class UserController extends AbstractController {
         return responseData(new UserResponse(userService.update(user)));
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/users/get")
+    public ResponseEntity<Response> update(@RequestParam("id_user") int id_user){
+        return responseData(new UserResponse(userService.findUserById(id_user)));
+    }
+
 }

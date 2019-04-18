@@ -4,14 +4,12 @@ import com.sharefood.ShareFood.model.Restaurant;
 import com.sharefood.ShareFood.response.base.Response;
 import com.sharefood.ShareFood.response.extend.BooleanResponse;
 import com.sharefood.ShareFood.response.extend.CountResponse;
+import com.sharefood.ShareFood.response.extend.RestaurantResponse;
 import com.sharefood.ShareFood.response.extend.RestaurantsResponse;
 import com.sharefood.ShareFood.service.base.RestaurantService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -53,6 +51,16 @@ public class RestaurantController extends AbstractController {
         }else {
             return responseData(new BooleanResponse(false));
         }
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/restaurants")
+    public ResponseEntity<Response> insert(@RequestBody Restaurant restaurant){
+        return responseData(new RestaurantResponse(restaurantService.insert(restaurant)));
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/restaurants")
+    public ResponseEntity<Response> update(@RequestBody Restaurant restaurant){
+        return responseData(new RestaurantResponse(restaurantService.update(restaurant)));
     }
 
 }

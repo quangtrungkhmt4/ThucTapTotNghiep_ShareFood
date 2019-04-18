@@ -11,26 +11,11 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbarFoodDetail"
         android:layout_width="match_parent"
+        app:title="@string/food_detail"
+        app:titleTextColor="@color/white"
+        app:navigationIcon="@drawable/ic_arrow_back"
         android:background="@color/colorPrimary"
         android:layout_height="?android:attr/actionBarSize">
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ImageView
-                android:id="@+id/imBack"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_arrow_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <com.example.sharefood.view.CustomItalyTextView
-                android:layout_width="wrap_content"
-                android:text="@string/food_detail"
-                android:textColor="@color/white"
-                android:layout_gravity="center"
-                style="?android:attr/textAppearanceLarge"
-                android:layout_height="wrap_content" />
-        </FrameLayout>
     </android.support.v7.widget.Toolbar>
 
 

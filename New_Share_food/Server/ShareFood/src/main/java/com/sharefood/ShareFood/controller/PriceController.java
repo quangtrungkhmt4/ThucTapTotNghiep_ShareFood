@@ -40,4 +40,9 @@ public class PriceController extends AbstractController{
         Restaurant restaurant = restaurantService.findRestaurantById_restaurant(id_restaurant);
         return responseData(new PricesResponse(priceService.findAllByRestaurant(restaurant)));
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/prices/search")
+    public ResponseEntity<Response> search(@RequestParam("id_province") int id_province){
+        return responseData(new PricesResponse(priceService.searchWithProvince(id_province)));
+    }
 }

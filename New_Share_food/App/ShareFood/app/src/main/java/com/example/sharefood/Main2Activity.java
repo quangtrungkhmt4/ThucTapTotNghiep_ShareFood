@@ -199,6 +199,14 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
         Button btnLogin = dialog.findViewById(R.id.btnLogin);
         Button btnRestaurant = dialog.findViewById(R.id.btnRestaurant);
 
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Main2Activity.this, SearchActivity.class));
+                dialog.dismiss();
+            }
+        });
+
         dialog.show();
     }
 

@@ -11,4 +11,6 @@ public interface PriceService extends Service<Price> {
     int countAll();
 
     List<Price> findAllByRestaurant(Restaurant restaurant);
+
+    List<Price> searchWithProvince(int id);
 }

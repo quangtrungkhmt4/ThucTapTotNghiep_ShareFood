@@ -36,6 +36,11 @@ public class PriceServiceImpl implements PriceService {
     }
 
     @Override
+    public List<Price> searchWithProvince(int id) {
+        return priceRepository.searchWithProvince(id);
+    }
+
+    @Override
     public Price insert(Price price) {
         return priceRepository.save(price);
     }

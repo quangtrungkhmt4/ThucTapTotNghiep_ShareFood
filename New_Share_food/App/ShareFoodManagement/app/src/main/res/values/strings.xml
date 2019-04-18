@@ -25,4 +25,14 @@
     <string name="list_manager">Tài khoản quản lý nhà hàng</string>
     <string name="user_info">Thông tin tài khoản</string>
     <string name="lock_success">Khóa tài khoản thành công</string>
+    <string name="add_category">Thêm thực đơn</string>
+    <string name="category_name">Tên thực đơn...</string>
+    <string name="category_image">Link ảnh thực đơn...</string>
+    <string name="add">Thêm</string>
+    <string name="image_error">Link ảnh không hợp lệ</string>
+    <string name="add_success">Thêm thành công</string>
+    <string name="update">Cập nhật</string>
+    <string name="delete">Xóa</string>
+    <string name="update_success">Cập nhật thành công</string>
+    <string name="update_category">Cập nhật thực đơn</string>
 </resources>

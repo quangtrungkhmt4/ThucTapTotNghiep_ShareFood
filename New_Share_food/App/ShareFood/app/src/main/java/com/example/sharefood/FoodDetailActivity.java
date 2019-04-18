@@ -1,9 +1,11 @@
 package com.example.sharefood;
 
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -12,10 +14,12 @@ import com.example.sharefood.constant.Key;
 import com.example.sharefood.model.Price;
 import com.example.sharefood.view.CustomItalyTextView;
 
+import java.util.Objects;
+
 public class FoodDetailActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
-    private ImageView imBack, imLogoFood;
+    private ImageView  imLogoFood;
     private CustomItalyTextView tvFoodName, tvResName, tvTime, tvAddress, tvWebsite, tvFoodInfo, tvRecipe, tvPrice;
     private Button btnCall;
     private Price currentPrice;
@@ -32,7 +36,6 @@ public class FoodDetailActivity extends AppCompatActivity {
 
     private void findId() {
         toolbar = findViewById(R.id.toolbarFoodDetail);
-        imBack = findViewById(R.id.imBack);
         imLogoFood = findViewById(R.id.imgLogoFoodDetail);
         tvFoodName = findViewById(R.id.tvNameFoodDetail);
         tvResName = findViewById(R.id.tvNameResFoodDetail);
@@ -46,7 +49,22 @@ public class FoodDetailActivity extends AppCompatActivity {
     }
 
     private void initViews() {
+        setSupportActionBar(toolbar);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Objects.requireNonNull(getSupportActionBar()).setHomeButtonEnabled(true);
+        }
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home){
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void loadData() {

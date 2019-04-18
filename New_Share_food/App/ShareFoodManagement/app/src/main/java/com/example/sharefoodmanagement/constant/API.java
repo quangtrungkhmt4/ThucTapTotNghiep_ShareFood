@@ -19,4 +19,7 @@ public class API {
 
     //image
     public static final String GET_ALL_IMAGE = IP + "images";
+
+    //category
+    public static final String GET_ALL_CATEGORY = IP + "categories";
 }

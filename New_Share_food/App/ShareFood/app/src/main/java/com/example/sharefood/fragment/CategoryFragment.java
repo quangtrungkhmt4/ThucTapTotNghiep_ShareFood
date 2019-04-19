@@ -16,7 +16,7 @@ import com.example.sharefood.view.CustomItalyTextView;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class CategoryFragment extends Fragment {
+public class CategoryFragment extends Fragment implements View.OnClickListener {
 
     private Category currentCategory;
     private CircleImageView imgLogo;
@@ -48,5 +48,12 @@ public class CategoryFragment extends Fragment {
         Glide.with(categoryActivity).load(url).into(imgLogo);
 
         tvName.setText(currentCategory.getName());
+
+        btnView.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        categoryActivity.switchActivity(currentCategory.getId_category());
     }
 }

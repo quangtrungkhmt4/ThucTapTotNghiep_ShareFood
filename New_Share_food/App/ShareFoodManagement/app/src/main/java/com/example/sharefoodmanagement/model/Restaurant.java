@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Restaurant extends AbstractModel {
-    private int id_restaurant;
+    private int id;
     private String name;
     private String created_at;
     private String time_open;

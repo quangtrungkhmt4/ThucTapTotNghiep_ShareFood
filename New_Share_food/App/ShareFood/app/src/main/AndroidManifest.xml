@@ -18,7 +18,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CategoryActivity"></activity>
+        <activity android:name=".RegisterRestaurantActivity"></activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/key_map" />
+
+        <activity android:name=".ListRestaurantActivity" />
+        <activity android:name=".ListFoodActivity" />
+        <activity android:name=".CategoryActivity" />
         <activity android:name=".LoginRegisterActivity" />
         <activity android:name=".SearchActivity" />
         <activity android:name=".FoodDetailActivity" />

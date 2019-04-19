@@ -46,8 +46,8 @@ public class Restaurant extends AbstractModel {
     @Column(name = "logo")
     private String logo;
 
-    @Column(name = "lock")
-    private int lock;
+    @Column(name = "locked")
+    private int locked;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_province")

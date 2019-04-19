@@ -84,8 +84,13 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                         if (dataStr.contains("null")){
                             Toast.makeText(loginRegisterActivity, getString(R.string.login_fail), Toast.LENGTH_SHORT).show();
                         }else {
-                            Toast.makeText(loginRegisterActivity, getString(R.string.login_success), Toast.LENGTH_SHORT).show();
                             final User user = new Gson().fromJson(dataStr, User.class);
+                            if (user.getPermission() != 0){
+                                Toast.makeText(loginRegisterActivity, "Quyền truy cập bị hạn chế.", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                            Toast.makeText(loginRegisterActivity, getString(R.string.login_success), Toast.LENGTH_SHORT).show();
+
                             Preferences.saveData(Key.USER, dataStr, getContext());
 
                             CountDownTimer countDownTimer = new CountDownTimer(2000,1000) {

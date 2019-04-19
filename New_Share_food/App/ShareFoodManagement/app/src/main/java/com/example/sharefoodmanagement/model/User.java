@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User  extends AbstractModel{
-    private int id_user;
+    private int id;
     private String user_name;
     private String password;
     private String name;

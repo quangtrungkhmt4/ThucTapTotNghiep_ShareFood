@@ -81,23 +81,45 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         if (dataStr.contains("null")){
                             Toast.makeText(LoginActivity.this, getString(R.string.login_fail), Toast.LENGTH_SHORT).show();
                         }else {
-                            Toast.makeText(LoginActivity.this, getString(R.string.login_success), Toast.LENGTH_SHORT).show();
                             final User user = new Gson().fromJson(dataStr, User.class);
-                            Preferences.saveData(Key.USER, dataStr, LoginActivity.this);
+                            if (user.getPermission() == 2){
+                                Toast.makeText(LoginActivity.this, getString(R.string.login_success), Toast.LENGTH_SHORT).show();
+                                Preferences.saveData(Key.USER, dataStr, LoginActivity.this);
 
-                            CountDownTimer countDownTimer = new CountDownTimer(2000,1000) {
-                                @Override
-                                public void onTick(long millisUntilFinished) {
+                                CountDownTimer countDownTimer = new CountDownTimer(2000,1000) {
+                                    @Override
+                                    public void onTick(long millisUntilFinished) {
 
-                                }
-                                @Override
-                                public void onFinish() {
-                                    Intent intent = new Intent(LoginActivity.this, MainAdminActivity.class);
-                                    intent.putExtra(Key.USER, user);
-                                    startActivity(intent);
-                                    finish();
-                                }
-                            }.start();
+                                    }
+                                    @Override
+                                    public void onFinish() {
+                                        Intent intent = new Intent(LoginActivity.this, MainAdminActivity.class);
+                                        intent.putExtra(Key.USER, user);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                }.start();
+                            }else if (user.getPermission() == 1){
+                                Toast.makeText(LoginActivity.this, getString(R.string.login_success), Toast.LENGTH_SHORT).show();
+                                Preferences.saveData(Key.USER, dataStr, LoginActivity.this);
+
+                                CountDownTimer countDownTimer = new CountDownTimer(2000,1000) {
+                                    @Override
+                                    public void onTick(long millisUntilFinished) {
+
+                                    }
+                                    @Override
+                                    public void onFinish() {
+                                        Intent intent = new Intent(LoginActivity.this, MainManagerActivity.class);
+                                        intent.putExtra(Key.USER, user);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                }.start();
+                            }else {
+                                Toast.makeText(LoginActivity.this, "Quyền truy cập bị hạn chế", Toast.LENGTH_SHORT).show();
+                            }
+
                         }
                     }
                 } catch (JSONException e) {

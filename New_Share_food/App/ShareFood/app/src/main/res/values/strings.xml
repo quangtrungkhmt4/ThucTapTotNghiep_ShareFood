@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">ShareFood</string>
+    <string name="key_map">AIzaSyALYTbPGVmO89JruLkawn1Xego7sCcQ6ac</string>
     <string name="welcome">Chào mừng bạn đến Share Food</string>
     <string name="special">Nổi bật</string>
     <string name="list_food">Danh sách món ăn</string>
@@ -45,4 +46,12 @@
     <string name="logout">Đăng xuất</string>
     <string name="view">Xem</string>
     <string name="error">Lỗi không xác định</string>
+    <string name="send">Gửi</string>
+    <string name="enter_comment">Nhập bình luận...</string>
+    <string name="login_please">Bạn cần đăng nhập</string>
+    <string name="name_restaurant">Tên nhà hàng...</string>
+    <string name="open_restaurant">Giờ mở cửa...</string>
+    <string name="close_restaurant">Giờ đóng cửa...</string>
+    <string name="web">Website...</string>
+    <string name="logo">Link logo...</string>
 </resources>

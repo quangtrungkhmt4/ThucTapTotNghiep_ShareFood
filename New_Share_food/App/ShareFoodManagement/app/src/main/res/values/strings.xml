@@ -35,4 +35,14 @@
     <string name="delete">Xóa</string>
     <string name="update_success">Cập nhật thành công</string>
     <string name="update_category">Cập nhật thực đơn</string>
+    <string name="restaurant_desc">Thông tin nhà hàng</string>
+    <string name="food_list">Danh sách món ăn</string>
+    <string name="into_info">Bạn cần nhập đủ thông tin</string>
+    <string name="info_food">Thông tin món ăn</string>
+    <string name="name_food">Tên món ăn</string>
+    <string name="desc_food">Mô tả món ăn</string>
+    <string name="link_food">Link ảnh món ăn</string>
+    <string name="recipe_food">Công thức món ăn</string>
+    <string name="add_food">Thêm món ăn</string>
+    <string name="price_food">Giá</string>
 </resources>

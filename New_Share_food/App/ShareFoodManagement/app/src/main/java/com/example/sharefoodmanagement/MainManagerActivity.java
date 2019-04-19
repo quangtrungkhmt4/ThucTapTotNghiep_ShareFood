@@ -11,6 +11,7 @@ import android.widget.ImageView;
 
 import com.android.volley.RequestQueue;
 import com.example.sharefoodmanagement.adapter.PageAdapter;
+import com.example.sharefoodmanagement.adapter.PagerManagerAdapter;
 import com.example.sharefoodmanagement.constant.Key;
 import com.example.sharefoodmanagement.model.User;
 import com.example.sharefoodmanagement.util.Preferences;
@@ -18,12 +19,12 @@ import com.example.sharefoodmanagement.util.ProcessDialog;
 import com.example.sharefoodmanagement.util.VolleySingleton;
 import com.google.gson.Gson;
 
-public class MainAdminActivity extends AppCompatActivity {
+public class MainManagerActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private ViewPager viewPager;
     private TabLayout tabLayout;
-    private PageAdapter pagerAdapter;
+    private PagerManagerAdapter pagerAdapter;
     private RequestQueue requestQueue;
     private ProcessDialog processDialog;
     private User currentUser;
@@ -32,7 +33,7 @@ public class MainAdminActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_admin);
+        setContentView(R.layout.activity_main_manager);
 
         findId();
         initViews();
@@ -51,15 +52,15 @@ public class MainAdminActivity extends AppCompatActivity {
         requestQueue = VolleySingleton.getInstance(this).getmRequestQueue();
         processDialog = new ProcessDialog(this);
         currentUser = new Gson().fromJson(Preferences.getData(Key.USER, this), User.class);
-        pagerAdapter = new PageAdapter(this, getSupportFragmentManager());
+        pagerAdapter = new PagerManagerAdapter(this, getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
         imLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Preferences.saveData(Key.USER, "", MainAdminActivity.this);
-                startActivity(new Intent(MainAdminActivity.this, LoginActivity.class));
+                Preferences.saveData(Key.USER, "", MainManagerActivity.this);
+                startActivity(new Intent(MainManagerActivity.this, LoginActivity.class));
                 finish();
             }
         });

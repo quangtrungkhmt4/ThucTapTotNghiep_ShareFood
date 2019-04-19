@@ -159,6 +159,23 @@
 
             <com.example.sharefood.view.CustomItalyTextView
                 android:layout_width="wrap_content"
+                android:text="@string/map"
+                android:drawablePadding="10dp"
+                android:padding="10dp"
+                style="?android:attr/textAppearanceMedium"
+                android:drawableLeft="@drawable/ic_point"
+                android:layout_height="wrap_content" />
+
+            <fragment
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/myMap"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"/>
+
+            <com.example.sharefood.view.CustomItalyTextView
+                android:layout_width="wrap_content"
                 android:text="@string/comments"
                 android:drawablePadding="10dp"
                 android:padding="10dp"
@@ -169,7 +186,32 @@
             <com.example.sharefood.view.CustomListView
                 android:layout_width="match_parent"
                 android:id="@+id/lvFoodComment"
-                android:layout_height="wrap_content"></com.example.sharefood.view.CustomListView>
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:padding="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:hint="@string/enter_comment"
+                    android:id="@+id/edtComment"
+                    android:layout_marginRight="5dp"
+                    android:padding="10dp"
+                    android:background="@drawable/spinner_background"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:id="@+id/btnSendComment"
+                    android:background="@drawable/baclground_ver4"
+                    android:textColor="@color/white"
+                    android:text="@string/send"
+                    android:layout_weight=".15"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Restaurant extends AbstractModel {
-    private int id_price;
+    private int id;
     private String name;
     private String created_at;
     private String time_open;
@@ -19,5 +19,19 @@ public class Restaurant extends AbstractModel {
     private String phone;
     private String website;
     private String logo;
+    private int locked;
     private Province province;
+
+    public Restaurant(String name, String created_at, String time_open, String time_close, String address, String phone, String website, String logo, int locked, Province province) {
+        this.name = name;
+        this.created_at = created_at;
+        this.time_open = time_open;
+        this.time_close = time_close;
+        this.address = address;
+        this.phone = phone;
+        this.website = website;
+        this.logo = logo;
+        this.locked = locked;
+        this.province = province;
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.sharefood;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -83,5 +84,11 @@ public class CategoryActivity extends AppCompatActivity {
             }
         });
         requestQueue.add(jsonObjectRequest);
+    }
+
+    public void switchActivity(int category){
+        Intent intent = new Intent(this, ListFoodActivity.class);
+        intent.putExtra("id_category", category);
+        startActivity(intent);
     }
 }

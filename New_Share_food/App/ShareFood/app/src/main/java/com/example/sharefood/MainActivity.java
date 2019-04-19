@@ -266,10 +266,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Button btnSearch = dialog.findViewById(R.id.btnSearch);
         Button btnCategory = dialog.findViewById(R.id.btnCategory);
-        Button btnMap = dialog.findViewById(R.id.btnMap);
+//        Button btnMap = dialog.findViewById(R.id.btnMap);
         Button btnRegister = dialog.findViewById(R.id.btnResgisterRestaurant);
         Button btnLogin = dialog.findViewById(R.id.btnLogin);
-        Button btnRestaurant = dialog.findViewById(R.id.btnRestaurant);
+//        Button btnRestaurant = dialog.findViewById(R.id.btnRestaurant);
 
         dialog.show();
     }

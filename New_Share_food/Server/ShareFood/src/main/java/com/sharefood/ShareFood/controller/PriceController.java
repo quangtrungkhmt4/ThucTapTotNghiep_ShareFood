@@ -3,16 +3,15 @@ package com.sharefood.ShareFood.controller;
 import com.sharefood.ShareFood.model.Price;
 import com.sharefood.ShareFood.model.Restaurant;
 import com.sharefood.ShareFood.response.base.Response;
+import com.sharefood.ShareFood.response.extend.BooleanResponse;
 import com.sharefood.ShareFood.response.extend.CountResponse;
+import com.sharefood.ShareFood.response.extend.PriceResponse;
 import com.sharefood.ShareFood.response.extend.PricesResponse;
 import com.sharefood.ShareFood.service.base.PriceService;
 import com.sharefood.ShareFood.service.base.RestaurantService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -44,5 +43,26 @@ public class PriceController extends AbstractController{
     @RequestMapping(method = RequestMethod.GET, value = "/prices/search")
     public ResponseEntity<Response> search(@RequestParam("id_province") int id_province){
         return responseData(new PricesResponse(priceService.searchWithProvince(id_province)));
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/prices/category")
+    public ResponseEntity<Response> searchWithCategory(@RequestParam("id_category") int id_category){
+        return responseData(new PricesResponse(priceService.searchWithCategory(id_category)));
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/prices")
+    public ResponseEntity<Response> update(@RequestBody Price price){
+        return responseData(new PriceResponse(priceService.update(price)));
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/prices")
+    public ResponseEntity<Response> insert(@RequestBody Price price){
+        return responseData(new PriceResponse(priceService.insert(price)));
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/prices")
+    public ResponseEntity<Response> delete(@RequestParam("id_price") int id_price){
+        priceService.delete(id_price);
+        return responseData(new BooleanResponse(true));
     }
 }

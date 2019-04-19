@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,9 +23,11 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.sharefood.adapter.CategoryAdapter;
 import com.example.sharefood.adapter.PriceAdapter;
 import com.example.sharefood.constant.API;
 import com.example.sharefood.constant.Key;
+import com.example.sharefood.model.Category;
 import com.example.sharefood.model.Price;
 import com.example.sharefood.util.Preferences;
 import com.example.sharefood.util.ProcessDialog;
@@ -51,6 +54,7 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
     private Toolbar toolbar;
     private ImageView imMenu;
     private Dialog dialog;
+    private Dialog dialogCategory;
     private ProcessDialog processDialog;
 
     @Override
@@ -195,10 +199,10 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
 
         Button btnSearch = dialog.findViewById(R.id.btnSearch);
         Button btnCategory = dialog.findViewById(R.id.btnCategory);
-        Button btnMap = dialog.findViewById(R.id.btnMap);
+//        Button btnMap = dialog.findViewById(R.id.btnMap);
         Button btnRegister = dialog.findViewById(R.id.btnResgisterRestaurant);
         Button btnLogin = dialog.findViewById(R.id.btnLogin);
-        Button btnRestaurant = dialog.findViewById(R.id.btnRestaurant);
+//        Button btnRestaurant = dialog.findViewById(R.id.btnRestaurant);
 
         final String userStr = Preferences.getData(Key.USER, Main2Activity.this);
         if (!userStr.equals("")){
@@ -234,8 +238,36 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
             }
         });
 
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Main2Activity.this, RegisterRestaurantActivity.class));
+                dialog.dismiss();
+            }
+        });
+
         dialog.show();
     }
+
+//    CategoryAdapter categoryAdapter;
+//    List<Category> categories = new ArrayList<>();
+//    @SuppressLint("NewApi")
+//    private void initDialogCategory() {
+//        dialogCategory = new Dialog(this, android.R.style.Theme_Holo_Light_Dialog_NoActionBar_MinWidth);
+//        dialogCategory.setContentView(R.layout.dialog_category);
+//        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//        dialogCategory.setCancelable(true);
+//
+//        ViewPager viewPager = dialogCategory.findViewById(R.id.viewpager);
+//
+//        categoryAdapter = new CategoryAdapter(getApplicationContext(), getSupportFragmentManager(), categories);
+//        viewPager.setAdapter(categoryAdapter);
+//        getCategory();
+//
+//
+//        dialogCategory.show();
+//    }
+
 
     @Override
     public void onItemClick(View view, int position) {
@@ -243,6 +275,8 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
         intent.putExtra(Key.FOOD, foods.get(position));
         startActivity(intent);
     }
+
+
 
     @Override
     public void onButtonClick(View view, int position) {

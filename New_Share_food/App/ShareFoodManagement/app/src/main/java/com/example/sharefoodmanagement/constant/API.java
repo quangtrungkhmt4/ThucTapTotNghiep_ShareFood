@@ -16,10 +16,24 @@ public class API {
     public static final String GET_ALL_RESTAURANT = IP + "restaurants/getAll";
     public static final String DELETE_RESTAURANT = IP + "restaurants/delete";
     public static final String BLOCK_RESTAURANT = IP + "restaurants/lock";
+    public static final String POST_RESTAURANT = IP + "restaurants";
 
     //image
     public static final String GET_ALL_IMAGE = IP + "images";
 
     //category
     public static final String GET_ALL_CATEGORY = IP + "categories";
+
+    //manager
+    public static final String GET_MANAGER = IP + "managers/get";
+
+    //price
+    public static final String COUNT_PRICE = IP + "prices/count";
+    public static final String SEARCH_PRICE = IP + "prices/search";
+    public static final String GET_PRICE = IP + "prices/get";
+    public static final String SEARCH_PRICE_WITH_CATEGORY = IP + "prices/category";
+    public static final String PRICE_WITH_PAGE = IP + "prices";
+
+    //food
+    public static final String POST_FOOD = IP + "foods";
 }

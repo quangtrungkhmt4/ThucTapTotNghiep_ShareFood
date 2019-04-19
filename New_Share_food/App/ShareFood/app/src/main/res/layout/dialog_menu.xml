@@ -32,31 +32,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/btnMap"
-        android:layout_margin="15dp"
-        android:drawablePadding="-30dp"
-        android:paddingLeft="20dp"
-        android:drawableLeft="@drawable/ic_map"
-        style="?android:attr/textAppearanceMedium"
-        android:textColor="@color/white"
-        android:text="@string/map"
-        android:background="@drawable/baclground_ver3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <!--<Button-->
+        <!--android:id="@+id/btnMap"-->
+        <!--android:layout_margin="15dp"-->
+        <!--android:drawablePadding="-30dp"-->
+        <!--android:paddingLeft="20dp"-->
+        <!--android:drawableLeft="@drawable/ic_map"-->
+        <!--style="?android:attr/textAppearanceMedium"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:text="@string/map"-->
+        <!--android:background="@drawable/baclground_ver3"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
 
-    <Button
-        android:id="@+id/btnRestaurant"
-        android:layout_margin="15dp"
-        android:drawablePadding="-30dp"
-        android:paddingLeft="20dp"
-        android:drawableLeft="@drawable/ic_restaurant"
-        style="?android:attr/textAppearanceMedium"
-        android:textColor="@color/white"
-        android:text="@string/list_restaurant"
-        android:background="@drawable/baclground_ver4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <!--<Button-->
+        <!--android:id="@+id/btnRestaurant"-->
+        <!--android:layout_margin="15dp"-->
+        <!--android:drawablePadding="-30dp"-->
+        <!--android:paddingLeft="20dp"-->
+        <!--android:drawableLeft="@drawable/ic_restaurant"-->
+        <!--style="?android:attr/textAppearanceMedium"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:text="@string/list_restaurant"-->
+        <!--android:background="@drawable/baclground_ver4"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
 
     <Button
         android:id="@+id/btnResgisterRestaurant"
@@ -67,7 +67,7 @@
         style="?android:attr/textAppearanceMedium"
         android:textColor="@color/white"
         android:text="@string/register_restaurant"
-        android:background="@drawable/background_ver5"
+        android:background="@drawable/baclground_ver3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -80,7 +80,7 @@
         style="?android:attr/textAppearanceMedium"
         android:textColor="@color/white"
         android:text="@string/login"
-        android:background="@drawable/background_ver5"
+        android:background="@drawable/baclground_ver4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

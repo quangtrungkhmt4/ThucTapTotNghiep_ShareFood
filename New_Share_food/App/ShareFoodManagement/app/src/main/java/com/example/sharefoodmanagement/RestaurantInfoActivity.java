@@ -99,7 +99,7 @@ public class RestaurantInfoActivity extends AppCompatActivity implements View.On
     }
 
     private void getImages() {
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, API.GET_ALL_IMAGE + "?id_restaurant=" + currentRestaurant.getId_restaurant(), null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, API.GET_ALL_IMAGE + "?id_restaurant=" + currentRestaurant.getId(), null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
@@ -137,7 +137,7 @@ public class RestaurantInfoActivity extends AppCompatActivity implements View.On
                         .setCancelable(false)
                         .setPositiveButton("Khóa", new DialogInterface.OnClickListener() {
                             public void onClick(final DialogInterface dialog, final int id) {
-                                lockCompany(currentRestaurant.getId_restaurant());
+                                lockCompany(currentRestaurant.getId());
                                 finish();
                             }
                         })

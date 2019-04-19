@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2019 at 05:37 PM
+-- Generation Time: Apr 19, 2019 at 08:36 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -187,6 +187,14 @@ CREATE TABLE `tbl_food_comments` (
   `id_food` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `tbl_food_comments`
+--
+
+INSERT INTO `tbl_food_comments` (`id_comment`, `comment`, `created_at`, `id_user`, `id_food`) VALUES
+(1, 'ngon', '20190419_222959', 1, 70),
+(2, 'ngon', '20190419_223005', 1, 70);
+
 -- --------------------------------------------------------
 
 --
@@ -220,6 +228,13 @@ CREATE TABLE `tbl_manager_restaurant` (
   `id_user` int(11) NOT NULL,
   `id_restaurant` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_manager_restaurant`
+--
+
+INSERT INTO `tbl_manager_restaurant` (`id_manager`, `id_user`, `id_restaurant`) VALUES
+(1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -267,7 +282,6 @@ INSERT INTO `tbl_prices` (`id_price`, `price`, `id_food`, `id_restaurant`) VALUE
 (26, 30000, 19, 4),
 (27, 65000, 36, 1),
 (28, 15000, 7, 4),
-(29, 50000, 38, 1),
 (30, 165000, 26, 4),
 (31, 35000, 77, 1),
 (32, 150000, 52, 2),
@@ -441,7 +455,7 @@ CREATE TABLE `tbl_restaurants` (
   `phone` varchar(20) NOT NULL,
   `website` text,
   `logo` text NOT NULL,
-  `lock` int(11) NOT NULL,
+  `locked` int(11) NOT NULL,
   `id_province` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -449,8 +463,8 @@ CREATE TABLE `tbl_restaurants` (
 -- Dumping data for table `tbl_restaurants`
 --
 
-INSERT INTO `tbl_restaurants` (`id_restaurant`, `name`, `created_at`, `time_open`, `time_close`, `address`, `phone`, `website`, `logo`, `lock`, `id_province`) VALUES
-(1, 'Nhà hàng món Huế', 'Sở Kế hoạch đầu tư TP Hà Nội cấp ngày 08/10/2013', '06:30', '22:00', 'Tầng 2 tòa nhà VTC Online, Số 18 Tam Trinh, Q. Hai Bà Trưng, ​​Hà Nội\r\n\r\n', '1900 6005', 'https://pasgo.vn/chuoi-nha-hang/nha-hang-mon-hue-ha-noi-623?gclid=Cj0KCQjwnKHlBRDLARIsAMtMHDHobBWEtnRS1cJqC85pUILu5uHV4HVeyTL270Xvxe-Ty4XIAxO1HvYaAvZmEALw_wcB', 'https://cdn.vatgia.vn/pictures/fullsize/2015/10/06/rcm1444123832.jpg', 1, 25),
+INSERT INTO `tbl_restaurants` (`id_restaurant`, `name`, `created_at`, `time_open`, `time_close`, `address`, `phone`, `website`, `logo`, `locked`, `id_province`) VALUES
+(1, 'Nhà hàng món Huế1', 'Sở Kế hoạch đầu tư TP Hà Nội cấp ngày 08/10/2013', '00:18', '00:19', 'Tầng 2 tòa nhà VTC Online, Số 18 Tam Trinh, Q. Hai Bà Trưng, ​​Hà Nội\r\n\r\n', '1900 6005', 'https://pasgo.vn/chuoi-nha-hang/nha-hang-mon-hue-ha-noi-623?gclid=Cj0KCQjwnKHlBRDLARIsAMtMHDHobBWEtnRS1cJqC85pUILu5uHV4HVeyTL270Xvxe-Ty4XIAxO1HvYaAvZmEALw_wcB', 'https://cdn.vatgia.vn/pictures/fullsize/2015/10/06/rcm1444123832.jpg', 0, 25),
 (2, 'Nhà hàng Maison', 'Thành lập 24/5/2010', '06:30', '22:10', '36A Bán Đảo, Hoàng Cầu, Chợ Dừa, Đống Đa, Hà Nội', ' 0899349797', 'https://nhahangmaison.vn/', 'https://nhahangmaison.vn/wp-content/uploads/2018/12/logo-nha-hang-maison.png', 0, 25),
 (3, 'Nhà hàng Sen', '12/3/2006', '10:30', '20:30', ' 614 Lạc Long Quân, Tây Hồ, Hà Nội', '0437199857', 'https://jamja.vn/thuong-hieu/nha-hang-maison-sens', 'https://cdn.jamja.vn/blog/wp-content/themes/Newspaper/jamja_img/logo-rectangle.png', 0, 25),
 (4, 'Nhà hàng Nấm Việt Hà Thành', '2/3/2009', '10:30', '21:00', 'C8 Giảng Võ, Hà Nội', '0437939179', 'https://jamja.vn/thuong-hieu/he-thong-555', 'https://cdn.jamja.vn/blog/wp-content/themes/Newspaper/jamja_img/logo-rectangle.png', 0, 25);
@@ -495,7 +509,8 @@ CREATE TABLE `tbl_users` (
 
 INSERT INTO `tbl_users` (`id_user`, `user_name`, `password`, `name`, `phone`, `address`, `avatar`, `gender`, `created_at`, `permission`, `locked`) VALUES
 (1, 'ngoc', '123456', 'Ngô Th? Minh Ng?c', '0979391619', 'Nam ??nh', 'https://minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg', 'N?', '14/04/2019', 1, 0),
-(2, 'minhngoc', '123456', 'Ng?c Ngô', '123456789', 'Nam ??nh', 'https://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg', 'N?', '17/04/2019', 0, 0);
+(2, 'minhngoc', '123456', 'Ng?c Ngô', '123456789', 'Nam ??nh', 'https://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg', 'N?', '17/04/2019', 0, 0),
+(3, 'minhngoc', '123456', 'Ngọc Ngô', '123456789', 'Nam Định', 'https://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg', 'Nữ', '17/04/2019', 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -608,13 +623,13 @@ ALTER TABLE `tbl_categories`
 -- AUTO_INCREMENT for table `tbl_foods`
 --
 ALTER TABLE `tbl_foods`
-  MODIFY `id_food` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `id_food` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT for table `tbl_food_comments`
 --
 ALTER TABLE `tbl_food_comments`
-  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_images`
@@ -626,13 +641,13 @@ ALTER TABLE `tbl_images`
 -- AUTO_INCREMENT for table `tbl_manager_restaurant`
 --
 ALTER TABLE `tbl_manager_restaurant`
-  MODIFY `id_manager` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_manager` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_prices`
 --
 ALTER TABLE `tbl_prices`
-  MODIFY `id_price` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `id_price` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT for table `tbl_provinces`
@@ -650,7 +665,7 @@ ALTER TABLE `tbl_recepts`
 -- AUTO_INCREMENT for table `tbl_restaurants`
 --
 ALTER TABLE `tbl_restaurants`
-  MODIFY `id_restaurant` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_restaurant` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `tbl_restaurant_comments`
@@ -662,7 +677,7 @@ ALTER TABLE `tbl_restaurant_comments`
 -- AUTO_INCREMENT for table `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

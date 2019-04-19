@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".fragment.RestaurantInfoFragment">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="100dp"
+                android:id="@+id/imgLogoRes"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/loading"
+                android:layout_height="100dp" />
+
+
+            <EditText
+                android:textAlignment="center"
+                android:id="@+id/edtNameRes"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:drawablePadding="15dp"
+                android:padding="10dp"
+                android:inputType="text"
+                android:background="@drawable/spinner_background"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:focusable="false"
+                android:textAlignment="center"
+                android:id="@+id/edtOpenTimeRes"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:drawablePadding="15dp"
+                android:padding="10dp"
+                android:inputType="text"
+                android:background="@drawable/spinner_background"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:focusable="false"
+                android:textAlignment="center"
+                android:id="@+id/edtCloseTimeRes"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:drawablePadding="15dp"
+                android:padding="10dp"
+                android:inputType="text"
+                android:background="@drawable/spinner_background"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:textAlignment="center"
+                android:id="@+id/edtAddressRes"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:drawablePadding="15dp"
+                android:padding="10dp"
+                android:inputType="textMultiLine"
+                android:background="@drawable/spinner_background"
+                android:layout_width="match_parent"
+                android:layout_height="100dp" />
+
+            <EditText
+                android:textAlignment="center"
+                android:id="@+id/edtPhoneRes"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:drawablePadding="15dp"
+                android:padding="10dp"
+                android:inputType="number"
+                android:background="@drawable/spinner_background"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:textAlignment="center"
+                android:id="@+id/edtWebsiteRes"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:drawablePadding="15dp"
+                android:padding="10dp"
+                android:inputType="text"
+                android:background="@drawable/spinner_background"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/btnUpdateRes"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="50dp"
+                style="?android:attr/textAppearanceMedium"
+                android:textColor="@color/white"
+                android:background="@drawable/baclground_ver2"
+                android:text="@string/update"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

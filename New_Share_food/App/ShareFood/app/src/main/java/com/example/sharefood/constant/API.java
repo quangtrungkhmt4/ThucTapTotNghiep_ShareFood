@@ -19,4 +19,7 @@ public class API {
     //user
     public static final String LOGIN = IP + "users";
 
+    //category
+    public static final String GET_ALL_CATEGORY = IP + "categories";
+
 }

@@ -226,6 +226,14 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
             }
         });
 
+        btnCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Main2Activity.this, CategoryActivity.class));
+                dialog.dismiss();
+            }
+        });
+
         dialog.show();
     }
 

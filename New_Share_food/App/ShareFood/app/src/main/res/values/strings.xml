@@ -43,4 +43,6 @@
     <string name="female">Nữ</string>
     <string name="register_success">Đăng ký thành công</string>
     <string name="logout">Đăng xuất</string>
+    <string name="view">Xem</string>
+    <string name="error">Lỗi không xác định</string>
 </resources>

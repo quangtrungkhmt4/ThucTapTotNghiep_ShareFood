@@ -26,6 +26,7 @@ import com.example.sharefood.adapter.PriceAdapter;
 import com.example.sharefood.constant.API;
 import com.example.sharefood.constant.Key;
 import com.example.sharefood.model.Price;
+import com.example.sharefood.util.Preferences;
 import com.example.sharefood.util.ProcessDialog;
 import com.example.sharefood.util.VolleySingleton;
 import com.facebook.shimmer.ShimmerFrameLayout;
@@ -199,11 +200,29 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
         Button btnLogin = dialog.findViewById(R.id.btnLogin);
         Button btnRestaurant = dialog.findViewById(R.id.btnRestaurant);
 
+        final String userStr = Preferences.getData(Key.USER, Main2Activity.this);
+        if (!userStr.equals("")){
+            btnLogin.setText(getString(R.string.logout));
+        }
+
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Main2Activity.this, SearchActivity.class));
                 dialog.dismiss();
+            }
+        });
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!userStr.equals("")){
+                    Preferences.saveData(Key.USER, "", Main2Activity.this);
+                    dialog.dismiss();
+                }else {
+                    startActivity(new Intent(Main2Activity.this, LoginRegisterActivity.class));
+                    dialog.dismiss();
+                }
             }
         });
 

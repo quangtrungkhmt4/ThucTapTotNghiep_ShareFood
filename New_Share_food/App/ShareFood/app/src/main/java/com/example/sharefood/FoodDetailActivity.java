@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -32,6 +33,7 @@ import com.example.sharefood.adapter.CommentAdapter;
 import com.example.sharefood.constant.API;
 import com.example.sharefood.constant.Key;
 import com.example.sharefood.model.Cart;
+import com.example.sharefood.model.Favorite;
 import com.example.sharefood.model.FoodComment;
 import com.example.sharefood.model.Price;
 import com.example.sharefood.model.User;
@@ -69,7 +71,7 @@ import java.util.Objects;
 public class FoodDetailActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener, GoogleMap.OnMarkerClickListener, View.OnClickListener {
 
     private Toolbar toolbar;
-    private ImageView  imLogoFood;
+    private ImageView imLogoFood;
     private CustomItalyTextView tvFoodName, tvResName, tvTime, tvAddress, tvWebsite, tvFoodInfo, tvRecipe, tvPrice;
     private Button btnCall;
     private Price currentPrice;
@@ -133,18 +135,49 @@ public class FoodDetailActivity extends AppCompatActivity implements OnMapReadyC
         commentAdapter = new CommentAdapter(this, R.layout.item_comment, comments);
         lvComment.setAdapter(commentAdapter);
 
+        btnCall.setOnClickListener(this);
 
 
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_fav, menu);
+        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == android.R.id.home){
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_fav) {
+            Favorite favorite = new Gson().fromJson(Preferences.getData(Key.FAV, FoodDetailActivity.this), Favorite.class);
+            if (favorite != null){
+                boolean check  = favorite.isExists(currentPrice.getId_price());
+                if (check){
+                    Toast.makeText(this, "Món ăn này đã trong danh sách yêu thích của bạn.", Toast.LENGTH_SHORT).show();
+                }else {
+                    favorite.insert(currentPrice);
+                    Preferences.saveData(Key.FAV, new Gson().toJson(favorite), FoodDetailActivity.this);
+                    Toast.makeText(this, "Thêm vào danh sách yêu thích thành công.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+
+            return true;
+        } else if (id == android.R.id.home) {
             finish();
         }
+
         return super.onOptionsItemSelected(item);
     }
+
 
     private void loadData() {
         Intent intent = getIntent();
@@ -201,7 +234,7 @@ public class FoodDetailActivity extends AppCompatActivity implements OnMapReadyC
         LatLng begin;
         try {
             begin = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
-        }catch (Exception e){
+        } catch (Exception e) {
             begin = new LatLng(21.0544494, 105.735142);
         }
         currentLocation = begin;
@@ -259,15 +292,15 @@ public class FoodDetailActivity extends AppCompatActivity implements OnMapReadyC
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btnSendComment:
                 String comment = edtComment.getText().toString();
-                if (comment.isEmpty()){
+                if (comment.isEmpty()) {
                     return;
                 }
 
                 String user = Preferences.getData(Key.USER, this);
-                if (user.equals("")){
+                if (user.equals("")) {
                     Toast.makeText(this, getString(R.string.login_please), Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -278,6 +311,12 @@ public class FoodDetailActivity extends AppCompatActivity implements OnMapReadyC
                 postComment(foodComment);
 
                 edtComment.setText("");
+                break;
+            case R.id.btnCallFoodDetail:
+                String number = currentPrice.getRestaurant().getPhone();
+                Intent intent = new Intent(Intent.ACTION_CALL);
+                intent.setData(Uri.parse("tel:" + number));
+                startActivity(intent);
                 break;
         }
     }
@@ -294,9 +333,9 @@ public class FoodDetailActivity extends AppCompatActivity implements OnMapReadyC
         @Override
         protected void onPostExecute(LatLng latLng) {
             super.onPostExecute(latLng);
-            if (latLng == null){
+            if (latLng == null) {
                 Toast.makeText(FoodDetailActivity.this, getString(R.string.check_connect), Toast.LENGTH_SHORT).show();
-            }else {
+            } else {
                 mMap.clear();
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
                 CameraPosition position = new CameraPosition(latLng, 14, 0, 0);
@@ -348,7 +387,7 @@ public class FoodDetailActivity extends AppCompatActivity implements OnMapReadyC
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return new LatLng(lat,lng);
+        return new LatLng(lat, lng);
     }
 
     private void getComment() {
@@ -359,7 +398,7 @@ public class FoodDetailActivity extends AppCompatActivity implements OnMapReadyC
                 try {
                     if (response.getInt("code") == 0) {
                         JSONArray data = response.getJSONObject("data").getJSONArray("foodComments");
-                        for (int i=0; i<data.length(); i++){
+                        for (int i = 0; i < data.length(); i++) {
                             FoodComment foodComment = new Gson().fromJson(data.getJSONObject(i).toString(), FoodComment.class);
                             comments.add(foodComment);
                         }

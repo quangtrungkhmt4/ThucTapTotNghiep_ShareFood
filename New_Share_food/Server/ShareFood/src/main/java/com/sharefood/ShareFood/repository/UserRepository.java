@@ -13,6 +13,4 @@ public interface UserRepository extends CrudRepository<User, Integer> {
 
     List<User> findAllByPermissionAndLocked(int permission, int lock);
 
-    User findUserById(int id);
-
-}
+    User findUserById(int id);}

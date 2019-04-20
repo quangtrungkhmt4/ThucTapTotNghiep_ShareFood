@@ -2,17 +2,16 @@ package com.example.sharefoodmanagement.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.PopupMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -155,23 +154,23 @@ public class FoodManagerFragment extends Fragment implements AdapterView.OnItemL
 
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(mainManagerActivity);
-        builder.setMessage("Bạn muốn xóa món ăn này?")
-                .setCancelable(false)
-                .setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
-                    public void onClick(final DialogInterface dialog, final int id) {
-                        Price  price = foods.get(position);
-                        deletePrice(price.getId_price());
-                        dialog.cancel();
-                    }
-                })
-                .setNegativeButton("Thoát", new DialogInterface.OnClickListener() {
-                    public void onClick(final DialogInterface dialog, final int id) {
-                        dialog.cancel();
-                    }
-                });
-        final AlertDialog alert = builder.create();
-        alert.show();
+//        final AlertDialog.Builder builder = new AlertDialog.Builder(mainManagerActivity);
+//        builder.setMessage("Bạn muốn xóa món ăn này?")
+//                .setCancelable(false)
+//                .setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
+//                    public void onClick(final DialogInterface dialog, final int id) {
+//                        Price  price = foods.get(position);
+//                        deletePrice(price.getId_price());
+//                        dialog.cancel();
+//                    }
+//                })
+//                .setNegativeButton("Thoát", new DialogInterface.OnClickListener() {
+//                    public void onClick(final DialogInterface dialog, final int id) {
+//                        dialog.cancel();
+//                    }
+//                });
+//        final AlertDialog alert = builder.create();
+//        alert.show();
 
 
         return true;
@@ -203,8 +202,41 @@ public class FoodManagerFragment extends Fragment implements AdapterView.OnItemL
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        initDialogUpdate(foods.get(position));
+    public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+//        initDialogUpdate(foods.get(position));
+        PopupMenu popup = new PopupMenu(getContext(), view);
+        popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.updateCatgory:
+                        initDialogUpdate(foods.get(position));
+                        break;
+                    case R.id.deleteCategory:
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(mainManagerActivity);
+                        builder.setMessage("Bạn muốn xóa món ăn này?")
+                                .setCancelable(false)
+                                .setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
+                                    public void onClick(final DialogInterface dialog, final int id) {
+                                        Price  price = foods.get(position);
+                                        deletePrice(price.getId_price());
+                                        dialog.cancel();
+                                    }
+                                })
+                                .setNegativeButton("Thoát", new DialogInterface.OnClickListener() {
+                                    public void onClick(final DialogInterface dialog, final int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+                        final AlertDialog alert = builder.create();
+                        alert.show();
+                        break;
+                }
+                return true;
+            }
+        });
+
+        popup.show();
     }
 
     @SuppressLint("NewApi")
@@ -218,12 +250,14 @@ public class FoodManagerFragment extends Fragment implements AdapterView.OnItemL
         final EditText edtDesc = dialog.findViewById(R.id.edtDescFood);
         final EditText edtImage = dialog.findViewById(R.id.edtImageFood);
         final EditText edtRecipe = dialog.findViewById(R.id.edtRecipeFood);
+        final EditText edtPrice = dialog.findViewById(R.id.edtPriceFood);
         Button btnUpdate = dialog.findViewById(R.id.btnUpdateFood);
 
         edtName.setText(price.getFood().getName());
         edtDesc.setText(price.getFood().getDescription());
         edtImage.setText(price.getFood().getImage());
         edtRecipe.setText(price.getFood().getRecipe());
+        edtPrice.setText(price.getPrice() + "");
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -232,8 +266,9 @@ public class FoodManagerFragment extends Fragment implements AdapterView.OnItemL
                 String desc = edtDesc.getText().toString();
                 String image = edtImage.getText().toString();
                 String recipe = edtRecipe.getText().toString();
+                String pr = edtPrice.getText().toString();
 
-                if (name.isEmpty() || desc.isEmpty() || image.isEmpty() || recipe.isEmpty()){
+                if (name.isEmpty() || desc.isEmpty() || image.isEmpty() || recipe.isEmpty() || pr.isEmpty()){
                     Toast.makeText(mainManagerActivity, "Bạn cần nhập đủ thông tin", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -243,6 +278,7 @@ public class FoodManagerFragment extends Fragment implements AdapterView.OnItemL
                 price.getFood().setDescription(desc);
                 price.getFood().setImage(image);
                 price.getFood().setRecipe(recipe);
+                price.setPrice(Integer.parseInt(pr));
 
                 putFood(price);
                 dialog.dismiss();

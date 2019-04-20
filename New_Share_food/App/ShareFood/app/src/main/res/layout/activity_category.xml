@@ -8,9 +8,19 @@
     android:background="#00ffffff"
     tools:context=".CategoryActivity">
 
+
+
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#00ffffff" />
+
+    <ImageView
+        android:id="@+id/imgDemo"
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="right|center_vertical"
+        android:src="@drawable/ic_share_option"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
 </FrameLayout>

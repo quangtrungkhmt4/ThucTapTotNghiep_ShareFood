@@ -59,6 +59,19 @@
         <!--android:layout_height="wrap_content" />-->
 
     <Button
+        android:id="@+id/btnFavRestaurant"
+        android:layout_margin="15dp"
+        android:drawablePadding="-30dp"
+        android:paddingLeft="20dp"
+        android:drawableLeft="@drawable/ic_favorite_black_24dp"
+        style="?android:attr/textAppearanceMedium"
+        android:textColor="@color/white"
+        android:text="@string/fav"
+        android:background="@drawable/baclground_ver3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
         android:id="@+id/btnResgisterRestaurant"
         android:layout_margin="15dp"
         android:drawablePadding="-30dp"

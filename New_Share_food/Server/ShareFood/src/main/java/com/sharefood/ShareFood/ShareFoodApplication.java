@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ShareFoodApplication {
 
 	public static void main(String[] args) {
-		System.getProperties().put( "server.port", 9999 );
+		System.getProperties().put( "server.port", 9997 );
 		SpringApplication.run(ShareFoodApplication.class, args);
 	}
 

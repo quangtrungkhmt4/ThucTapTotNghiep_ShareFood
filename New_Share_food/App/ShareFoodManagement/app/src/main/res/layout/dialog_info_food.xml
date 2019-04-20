@@ -13,7 +13,7 @@
         <com.example.sharefoodmanagement.view.CustomItalyTextView
             android:layout_width="wrap_content"
             style="?android:attr/textAppearanceLarge"
-            android:text="@string/info_food"
+            android:text="@string/update_food"
             android:textColor="@color/white"
             android:layout_gravity="center"
             android:layout_height="wrap_content" />
@@ -26,10 +26,19 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <com.example.sharefoodmanagement.view.CustomItalyTextView
+                android:layout_width="wrap_content"
+                android:text="@string/name_food"
+                android:padding="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_height="wrap_content" />
+
             <EditText
                 android:textAlignment="center"
                 android:id="@+id/edtNameFood"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
                 android:drawablePadding="15dp"
@@ -40,10 +49,40 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
+            <com.example.sharefoodmanagement.view.CustomItalyTextView
+                android:layout_width="wrap_content"
+                android:text="@string/price_food"
+                android:padding="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:textAlignment="center"
+                android:id="@+id/edtPriceFood"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:drawablePadding="15dp"
+                android:padding="10dp"
+                android:inputType="text"
+                android:hint="@string/price_food"
+                android:background="@drawable/spinner_background"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.example.sharefoodmanagement.view.CustomItalyTextView
+                android:layout_width="wrap_content"
+                android:text="@string/desc_food"
+                android:padding="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_height="wrap_content" />
+
             <EditText
                 android:textAlignment="center"
                 android:id="@+id/edtDescFood"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
                 android:drawablePadding="15dp"
@@ -52,12 +91,20 @@
                 android:hint="@string/desc_food"
                 android:background="@drawable/spinner_background"
                 android:layout_width="match_parent"
-                android:layout_height="150dp" />
+                android:layout_height="wrap_content" />
+
+            <com.example.sharefoodmanagement.view.CustomItalyTextView
+                android:layout_width="wrap_content"
+                android:text="@string/link_food"
+                android:padding="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_height="wrap_content" />
 
             <EditText
                 android:textAlignment="center"
                 android:id="@+id/edtImageFood"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
                 android:drawablePadding="15dp"
@@ -66,12 +113,20 @@
                 android:hint="@string/link_food"
                 android:background="@drawable/spinner_background"
                 android:layout_width="match_parent"
-                android:layout_height="150dp" />
+                android:layout_height="wrap_content" />
+
+            <com.example.sharefoodmanagement.view.CustomItalyTextView
+                android:layout_width="wrap_content"
+                android:text="@string/recipe_food"
+                android:padding="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_height="wrap_content" />
 
             <EditText
                 android:textAlignment="center"
                 android:id="@+id/edtRecipeFood"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
                 android:drawablePadding="15dp"
@@ -80,7 +135,7 @@
                 android:hint="@string/recipe_food"
                 android:background="@drawable/spinner_background"
                 android:layout_width="match_parent"
-                android:layout_height="300dp" />
+                android:layout_height="wrap_content" />
 
             <Button
                 android:layout_marginBottom="10dp"

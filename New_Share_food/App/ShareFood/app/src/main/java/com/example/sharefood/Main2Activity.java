@@ -2,12 +2,13 @@ package com.example.sharefood;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,11 +24,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.example.sharefood.adapter.CategoryAdapter;
 import com.example.sharefood.adapter.PriceAdapter;
 import com.example.sharefood.constant.API;
 import com.example.sharefood.constant.Key;
-import com.example.sharefood.model.Category;
 import com.example.sharefood.model.Price;
 import com.example.sharefood.util.Preferences;
 import com.example.sharefood.util.ProcessDialog;
@@ -53,7 +52,7 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
     private int currentPage = 1;
     private Toolbar toolbar;
     private ImageView imMenu;
-    private Dialog dialog;
+    private Dialog dialogMenu;
     private Dialog dialogCategory;
     private ProcessDialog processDialog;
 
@@ -192,17 +191,17 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
 
     @SuppressLint("NewApi")
     private void initDialogMenu() {
-        dialog = new Dialog(this, android.R.style.Theme_Holo_Light_Dialog_NoActionBar_MinWidth);
-        dialog.setContentView(R.layout.dialog_menu);
-        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.setCancelable(true);
+        dialogMenu = new Dialog(this, android.R.style.Theme_Holo_Light_Dialog_NoActionBar_MinWidth);
+        dialogMenu.setContentView(R.layout.dialog_menu);
+        Objects.requireNonNull(dialogMenu.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialogMenu.setCancelable(true);
 
-        Button btnSearch = dialog.findViewById(R.id.btnSearch);
-        Button btnCategory = dialog.findViewById(R.id.btnCategory);
-//        Button btnMap = dialog.findViewById(R.id.btnMap);
-        Button btnRegister = dialog.findViewById(R.id.btnResgisterRestaurant);
-        Button btnLogin = dialog.findViewById(R.id.btnLogin);
-//        Button btnRestaurant = dialog.findViewById(R.id.btnRestaurant);
+        Button btnSearch = dialogMenu.findViewById(R.id.btnSearch);
+        Button btnCategory = dialogMenu.findViewById(R.id.btnCategory);
+//        Button btnMap = dialogMenu.findViewById(R.id.btnMap);
+        Button btnRegister = dialogMenu.findViewById(R.id.btnResgisterRestaurant);
+        Button btnLogin = dialogMenu.findViewById(R.id.btnLogin);
+        Button btnFav = dialogMenu.findViewById(R.id.btnFavRestaurant);
 
         final String userStr = Preferences.getData(Key.USER, Main2Activity.this);
         if (!userStr.equals("")){
@@ -213,7 +212,7 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Main2Activity.this, SearchActivity.class));
-                dialog.dismiss();
+                dialogMenu.dismiss();
             }
         });
 
@@ -221,11 +220,27 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onClick(View v) {
                 if (!userStr.equals("")){
-                    Preferences.saveData(Key.USER, "", Main2Activity.this);
-                    dialog.dismiss();
+
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(Main2Activity.this);
+                    builder.setMessage("Bạn muốn đăng xuất?")
+                            .setCancelable(false)
+                            .setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                                public void onClick(final DialogInterface dialog, final int id) {
+                                    Preferences.saveData(Key.USER, "", Main2Activity.this);
+                                    dialogMenu.dismiss();
+                                    dialog.cancel();
+                                }
+                            })
+                            .setNegativeButton("Thoát", new DialogInterface.OnClickListener() {
+                                public void onClick(final DialogInterface dialog, final int id) {
+                                    dialog.cancel();
+                                }
+                            });
+                    final AlertDialog alert = builder.create();
+                    alert.show();
                 }else {
                     startActivity(new Intent(Main2Activity.this, LoginRegisterActivity.class));
-                    dialog.dismiss();
+                    dialogMenu.dismiss();
                 }
             }
         });
@@ -234,19 +249,33 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Main2Activity.this, CategoryActivity.class));
-                dialog.dismiss();
+                dialogMenu.dismiss();
             }
         });
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String user = Preferences.getData(Key.USER, Main2Activity.this);
+                if (user.equals("")){
+                    Toast.makeText(Main2Activity.this, getString(R.string.login_please), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 startActivity(new Intent(Main2Activity.this, RegisterRestaurantActivity.class));
-                dialog.dismiss();
+                dialogMenu.dismiss();
             }
         });
 
-        dialog.show();
+        btnFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Main2Activity.this, FavoriteActivity.class));
+                dialogMenu.dismiss();
+            }
+        });
+
+        dialogMenu.show();
     }
 
 //    CategoryAdapter categoryAdapter;
@@ -255,7 +284,7 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
 //    private void initDialogCategory() {
 //        dialogCategory = new Dialog(this, android.R.style.Theme_Holo_Light_Dialog_NoActionBar_MinWidth);
 //        dialogCategory.setContentView(R.layout.dialog_category);
-//        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//        Objects.requireNonNull(dialogMenu.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 //        dialogCategory.setCancelable(true);
 //
 //        ViewPager viewPager = dialogCategory.findViewById(R.id.viewpager);

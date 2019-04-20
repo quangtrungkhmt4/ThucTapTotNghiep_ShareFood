@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2019 at 08:36 PM
+-- Generation Time: Apr 20, 2019 at 03:26 PM
 -- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.3
+-- PHP Version: 7.3.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -193,7 +193,8 @@ CREATE TABLE `tbl_food_comments` (
 
 INSERT INTO `tbl_food_comments` (`id_comment`, `comment`, `created_at`, `id_user`, `id_food`) VALUES
 (1, 'ngon', '20190419_222959', 1, 70),
-(2, 'ngon', '20190419_223005', 1, 70);
+(2, 'ngon', '20190419_223005', 1, 70),
+(3, 'món ngon', '20190420_155316', 2, 47);
 
 -- --------------------------------------------------------
 
@@ -464,7 +465,7 @@ CREATE TABLE `tbl_restaurants` (
 --
 
 INSERT INTO `tbl_restaurants` (`id_restaurant`, `name`, `created_at`, `time_open`, `time_close`, `address`, `phone`, `website`, `logo`, `locked`, `id_province`) VALUES
-(1, 'Nhà hàng món Huế1', 'Sở Kế hoạch đầu tư TP Hà Nội cấp ngày 08/10/2013', '00:18', '00:19', 'Tầng 2 tòa nhà VTC Online, Số 18 Tam Trinh, Q. Hai Bà Trưng, ​​Hà Nội\r\n\r\n', '1900 6005', 'https://pasgo.vn/chuoi-nha-hang/nha-hang-mon-hue-ha-noi-623?gclid=Cj0KCQjwnKHlBRDLARIsAMtMHDHobBWEtnRS1cJqC85pUILu5uHV4HVeyTL270Xvxe-Ty4XIAxO1HvYaAvZmEALw_wcB', 'https://cdn.vatgia.vn/pictures/fullsize/2015/10/06/rcm1444123832.jpg', 0, 25),
+(1, 'Nhà hàng món Huế', 'Sở Kế hoạch đầu tư TP Hà Nội cấp ngày 08/10/2013', '00:18', '00:19', 'Tầng 2 tòa nhà VTC Online, Số 18 Tam Trinh, Q. Hai Bà Trưng, ​​Hà Nội\r\n\r\n', '1900 6005', 'https://pasgo.vn/chuoi-nha-hang/nha-hang-mon-hue-ha-noi-623?gclid=Cj0KCQjwnKHlBRDLARIsAMtMHDHobBWEtnRS1cJqC85pUILu5uHV4HVeyTL270Xvxe-Ty4XIAxO1HvYaAvZmEALw_wcB', 'https://cdn.vatgia.vn/pictures/fullsize/2015/10/06/rcm1444123832.jpg', 0, 25),
 (2, 'Nhà hàng Maison', 'Thành lập 24/5/2010', '06:30', '22:10', '36A Bán Đảo, Hoàng Cầu, Chợ Dừa, Đống Đa, Hà Nội', ' 0899349797', 'https://nhahangmaison.vn/', 'https://nhahangmaison.vn/wp-content/uploads/2018/12/logo-nha-hang-maison.png', 0, 25),
 (3, 'Nhà hàng Sen', '12/3/2006', '10:30', '20:30', ' 614 Lạc Long Quân, Tây Hồ, Hà Nội', '0437199857', 'https://jamja.vn/thuong-hieu/nha-hang-maison-sens', 'https://cdn.jamja.vn/blog/wp-content/themes/Newspaper/jamja_img/logo-rectangle.png', 0, 25),
 (4, 'Nhà hàng Nấm Việt Hà Thành', '2/3/2009', '10:30', '21:00', 'C8 Giảng Võ, Hà Nội', '0437939179', 'https://jamja.vn/thuong-hieu/he-thong-555', 'https://cdn.jamja.vn/blog/wp-content/themes/Newspaper/jamja_img/logo-rectangle.png', 0, 25);
@@ -509,8 +510,9 @@ CREATE TABLE `tbl_users` (
 
 INSERT INTO `tbl_users` (`id_user`, `user_name`, `password`, `name`, `phone`, `address`, `avatar`, `gender`, `created_at`, `permission`, `locked`) VALUES
 (1, 'ngoc', '123456', 'Ngô Th? Minh Ng?c', '0979391619', 'Nam ??nh', 'https://minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg', 'N?', '14/04/2019', 1, 0),
-(2, 'minhngoc', '123456', 'Ng?c Ngô', '123456789', 'Nam ??nh', 'https://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg', 'N?', '17/04/2019', 0, 0),
-(3, 'minhngoc', '123456', 'Ngọc Ngô', '123456789', 'Nam Định', 'https://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg', 'Nữ', '17/04/2019', 0, 0);
+(2, 'mngoc', '123456', 'Ng?c Ngô', '123456789', 'Nam ??nh', 'https://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg', 'N?', '17/04/2019', 0, 0),
+(3, 'minhngoc', '123456', 'Ngoc nho', '123456789', 'Nam Định', 'https://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg', 'Nữ', '17/04/2019', 2, 0),
+(4, 'hang', '123456', '123456', '0123456789', 'Hà Nội', 'https://www.zimphysio.org.zw/wp-content/uploads/2018/01/default-avatar-2-300x300.jpg', 'Nữ', '20190420_155430', 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -629,7 +631,7 @@ ALTER TABLE `tbl_foods`
 -- AUTO_INCREMENT for table `tbl_food_comments`
 --
 ALTER TABLE `tbl_food_comments`
-  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_images`
@@ -677,7 +679,7 @@ ALTER TABLE `tbl_restaurant_comments`
 -- AUTO_INCREMENT for table `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -687,61 +689,61 @@ ALTER TABLE `tbl_users`
 -- Constraints for table `tbl_bills`
 --
 ALTER TABLE `tbl_bills`
-  ADD CONSTRAINT `tbl_bills_fk0` FOREIGN KEY (`id_restaurant`) REFERENCES `tbl_restaurants` (`id_restaurant`),
-  ADD CONSTRAINT `tbl_bills_fk1` FOREIGN KEY (`id_user`) REFERENCES `tbl_users` (`id_user`);
+  ADD CONSTRAINT `tbl_bills_fk0` FOREIGN KEY (`id_restaurant`) REFERENCES `tbl_restaurants` (`id_restaurant`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_bills_fk1` FOREIGN KEY (`id_user`) REFERENCES `tbl_users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tbl_foods`
 --
 ALTER TABLE `tbl_foods`
-  ADD CONSTRAINT `tbl_foods_fk0` FOREIGN KEY (`id_category`) REFERENCES `tbl_categories` (`id_category`);
+  ADD CONSTRAINT `tbl_foods_fk0` FOREIGN KEY (`id_category`) REFERENCES `tbl_categories` (`id_category`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tbl_food_comments`
 --
 ALTER TABLE `tbl_food_comments`
-  ADD CONSTRAINT `tbl_food_comments_fk0` FOREIGN KEY (`id_user`) REFERENCES `tbl_users` (`id_user`),
-  ADD CONSTRAINT `tbl_food_comments_fk1` FOREIGN KEY (`id_food`) REFERENCES `tbl_foods` (`id_food`);
+  ADD CONSTRAINT `tbl_food_comments_fk0` FOREIGN KEY (`id_user`) REFERENCES `tbl_users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_food_comments_fk1` FOREIGN KEY (`id_food`) REFERENCES `tbl_foods` (`id_food`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tbl_images`
 --
 ALTER TABLE `tbl_images`
-  ADD CONSTRAINT `tbl_images_fk0` FOREIGN KEY (`id_restaurant`) REFERENCES `tbl_restaurants` (`id_restaurant`);
+  ADD CONSTRAINT `tbl_images_fk0` FOREIGN KEY (`id_restaurant`) REFERENCES `tbl_restaurants` (`id_restaurant`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tbl_manager_restaurant`
 --
 ALTER TABLE `tbl_manager_restaurant`
-  ADD CONSTRAINT `tbl_manager_restaurant_fk0` FOREIGN KEY (`id_user`) REFERENCES `tbl_users` (`id_user`),
-  ADD CONSTRAINT `tbl_manager_restaurant_fk1` FOREIGN KEY (`id_restaurant`) REFERENCES `tbl_restaurants` (`id_restaurant`);
+  ADD CONSTRAINT `tbl_manager_restaurant_fk0` FOREIGN KEY (`id_user`) REFERENCES `tbl_users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_manager_restaurant_fk1` FOREIGN KEY (`id_restaurant`) REFERENCES `tbl_restaurants` (`id_restaurant`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tbl_prices`
 --
 ALTER TABLE `tbl_prices`
-  ADD CONSTRAINT `tbl_prices_fk0` FOREIGN KEY (`id_food`) REFERENCES `tbl_foods` (`id_food`),
-  ADD CONSTRAINT `tbl_prices_fk1` FOREIGN KEY (`id_restaurant`) REFERENCES `tbl_restaurants` (`id_restaurant`);
+  ADD CONSTRAINT `tbl_prices_fk0` FOREIGN KEY (`id_food`) REFERENCES `tbl_foods` (`id_food`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_prices_fk1` FOREIGN KEY (`id_restaurant`) REFERENCES `tbl_restaurants` (`id_restaurant`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tbl_recepts`
 --
 ALTER TABLE `tbl_recepts`
-  ADD CONSTRAINT `tbl_recepts_fk0` FOREIGN KEY (`id_food`) REFERENCES `tbl_foods` (`id_food`),
-  ADD CONSTRAINT `tbl_recepts_fk1` FOREIGN KEY (`id_bill`) REFERENCES `tbl_bills` (`id_bill`);
+  ADD CONSTRAINT `tbl_recepts_fk0` FOREIGN KEY (`id_food`) REFERENCES `tbl_foods` (`id_food`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_recepts_fk1` FOREIGN KEY (`id_bill`) REFERENCES `tbl_bills` (`id_bill`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tbl_restaurants`
 --
 ALTER TABLE `tbl_restaurants`
-  ADD CONSTRAINT `tbl_restaurants_fk0` FOREIGN KEY (`id_province`) REFERENCES `tbl_provinces` (`id_province`);
+  ADD CONSTRAINT `tbl_restaurants_fk0` FOREIGN KEY (`id_province`) REFERENCES `tbl_provinces` (`id_province`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tbl_restaurant_comments`
 --
 ALTER TABLE `tbl_restaurant_comments`
-  ADD CONSTRAINT `tbl_restaurant_comments_fk0` FOREIGN KEY (`id_user`) REFERENCES `tbl_users` (`id_user`),
-  ADD CONSTRAINT `tbl_restaurant_comments_fk1` FOREIGN KEY (`id_restaurant`) REFERENCES `tbl_restaurants` (`id_restaurant`);
+  ADD CONSTRAINT `tbl_restaurant_comments_fk0` FOREIGN KEY (`id_user`) REFERENCES `tbl_users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_restaurant_comments_fk1` FOREIGN KEY (`id_restaurant`) REFERENCES `tbl_restaurants` (`id_restaurant`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

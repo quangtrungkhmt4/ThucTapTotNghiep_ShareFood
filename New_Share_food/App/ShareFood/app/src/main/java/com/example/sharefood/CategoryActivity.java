@@ -2,8 +2,11 @@ package com.example.sharefood;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -30,6 +33,7 @@ public class CategoryActivity extends AppCompatActivity {
     private CategoryAdapter categoryAdapter;
     private RequestQueue requestQueue;
     private List<Category> categories;
+    private ImageView imgDemo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,7 @@ public class CategoryActivity extends AppCompatActivity {
 
     private void findId() {
         viewPager = findViewById(R.id.viewpager);
+        imgDemo = findViewById(R.id.imgDemo);
     }
 
     private void initViews() {
@@ -50,6 +55,18 @@ public class CategoryActivity extends AppCompatActivity {
         categoryAdapter = new CategoryAdapter(this, getSupportFragmentManager(), categories);
         viewPager.setAdapter(categoryAdapter);
         getCategory();
+
+        CountDownTimer countDownTimer = new CountDownTimer(2000,1000 ) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                imgDemo.setVisibility(View.GONE);
+            }
+        }.start();
     }
 
     private void getCategory() {

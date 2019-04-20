@@ -10,5 +10,6 @@ public class Key {
     public static final String FOOD = "FOOD";
 
     public static final String USER = "USER";
+    public static final String FAV = "FAV";
     public static final String RESTAURANT = "RESTAURANT";
 }

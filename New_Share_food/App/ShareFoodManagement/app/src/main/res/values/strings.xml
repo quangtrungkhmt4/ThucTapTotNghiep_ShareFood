@@ -45,4 +45,12 @@
     <string name="recipe_food">Công thức món ăn</string>
     <string name="add_food">Thêm món ăn</string>
     <string name="price_food">Giá</string>
+    <string name="edit_res">Cập nhật thông tin nhà hàng</string>
+    <string name="name_res">Tên nhà hàng</string>
+    <string name="time_open">Thời gian mở của</string>
+    <string name="time_close">Thời gian đóng cửa</string>
+    <string name="address">Địa chỉ</string>
+    <string name="phone">Số điện thoại</string>
+    <string name="website">Website</string>
+    <string name="update_food">Cập nhật thông tin món ăn</string>
 </resources>

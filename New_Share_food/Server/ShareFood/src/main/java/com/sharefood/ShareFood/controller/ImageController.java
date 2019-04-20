@@ -5,15 +5,13 @@ import com.sharefood.ShareFood.model.Price;
 import com.sharefood.ShareFood.model.Restaurant;
 import com.sharefood.ShareFood.response.base.Response;
 import com.sharefood.ShareFood.response.extend.ImageResponse;
+import com.sharefood.ShareFood.response.extend.ImgResponse;
 import com.sharefood.ShareFood.response.extend.PricesResponse;
 import com.sharefood.ShareFood.service.base.ImageService;
 import com.sharefood.ShareFood.service.base.RestaurantService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,5 +29,11 @@ public class ImageController extends AbstractController {
         List<Image> images = imageService.findAllByRestaurant(restaurant);
         return responseData(new ImageResponse(images));
     }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/images")
+    public ResponseEntity<Response> post(@RequestBody Image image){
+        return responseData(new ImgResponse(imageService.insert(image)));
+    }
+
 
 }

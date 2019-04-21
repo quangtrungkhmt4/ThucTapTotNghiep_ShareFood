@@ -1,6 +1,7 @@
 package com.example.sharefoodmanagement.fragment;
 
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -38,6 +40,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class RestaurantInfoFragment extends Fragment implements View.OnClickListener {
@@ -110,27 +113,7 @@ public class RestaurantInfoFragment extends Fragment implements View.OnClickList
 //            @Override
 //            public void onClick(View v) {
 //
-//                Calendar mcurrentTime = Calendar.getInstance();
-//                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-//                int minute = mcurrentTime.get(Calendar.MINUTE);
-//                TimePickerDialog mTimePicker;
-//                mTimePicker = new TimePickerDialog(mainManagerActivity, new TimePickerDialog.OnTimeSetListener() {
-//                    @Override
-//                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-//                        String h = String.valueOf(selectedHour);
-//                        String m = String.valueOf(selectedMinute);
-//                        if (selectedHour < 10){
-//                            h = "0" + h;
-//                        }
-//                        if (selectedMinute < 10){
-//                            m = "0" + m;
-//                        }
-//                        edtClose.setText( h + ":" + m);
-//                        currentManager.getRestaurant().setTime_close(h + ":" + m);
-//                    }
-//                }, hour, minute, true);//Yes 24 hour time
-//                mTimePicker.setTitle("Chọn thời gian");
-//                mTimePicker.show();
+
 //            }
 //        });
 //
@@ -138,27 +121,7 @@ public class RestaurantInfoFragment extends Fragment implements View.OnClickList
 //            @Override
 //            public void onClick(View v) {
 //
-//                Calendar mcurrentTime = Calendar.getInstance();
-//                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-//                int minute = mcurrentTime.get(Calendar.MINUTE);
-//                TimePickerDialog mTimePicker;
-//                mTimePicker = new TimePickerDialog(mainManagerActivity, new TimePickerDialog.OnTimeSetListener() {
-//                    @Override
-//                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-//                        String h = String.valueOf(selectedHour);
-//                        String m = String.valueOf(selectedMinute);
-//                        if (selectedHour < 10){
-//                            h = "0" + h;
-//                        }
-//                        if (selectedMinute < 10){
-//                            m = "0" + m;
-//                        }
-//                        edtOpen.setText( h + ":" + m);
-//                        currentManager.getRestaurant().setTime_open(h + ":" + m);
-//                    }
-//                }, hour, minute, true);//Yes 24 hour time
-//                mTimePicker.setTitle("Chọn thời gian");
-//                mTimePicker.show();
+
 //            }
 //        });
 //
@@ -230,10 +193,11 @@ public class RestaurantInfoFragment extends Fragment implements View.OnClickList
         tvWeb.setText(currentManager.getRestaurant().getWebsite().trim());
         tvProvince.setText(currentManager.getRestaurant().getProvince().getDescription().trim());
 
-        if (currentManager.getRestaurant().getLock() == 0) {
+        if (currentManager.getRestaurant().getLocked() == 0) {
             tvStatus.setText(getString(R.string.active));
         } else {
             tvStatus.setText(getString(R.string.lock));
+
         }
     }
 
@@ -279,6 +243,7 @@ public class RestaurantInfoFragment extends Fragment implements View.OnClickList
                 try {
                     if (response.getInt("code") == 0) {
                         Toast.makeText(mainManagerActivity, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
+                        loadData();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -320,6 +285,58 @@ public class RestaurantInfoFragment extends Fragment implements View.OnClickList
         edtPhone.setText(restaurant.getPhone().trim());
         edtWeb.setText(restaurant.getWebsite().trim());
 
+        edtOpen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar mcurrentTime = Calendar.getInstance();
+                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                int minute = mcurrentTime.get(Calendar.MINUTE);
+                TimePickerDialog mTimePicker;
+                mTimePicker = new TimePickerDialog(mainManagerActivity, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        String h = String.valueOf(selectedHour);
+                        String m = String.valueOf(selectedMinute);
+                        if (selectedHour < 10){
+                            h = "0" + h;
+                        }
+                        if (selectedMinute < 10){
+                            m = "0" + m;
+                        }
+                        edtOpen.setText( h + ":" + m);
+                    }
+                }, hour, minute, true);//Yes 24 hour time
+                mTimePicker.setTitle("Chọn thời gian");
+                mTimePicker.show();
+            }
+        });
+
+        edtClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar mcurrentTime = Calendar.getInstance();
+                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                int minute = mcurrentTime.get(Calendar.MINUTE);
+                TimePickerDialog mTimePicker;
+                mTimePicker = new TimePickerDialog(mainManagerActivity, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        String h = String.valueOf(selectedHour);
+                        String m = String.valueOf(selectedMinute);
+                        if (selectedHour < 10){
+                            h = "0" + h;
+                        }
+                        if (selectedMinute < 10){
+                            m = "0" + m;
+                        }
+                        edtClose.setText( h + ":" + m);
+                    }
+                }, hour, minute, true);//Yes 24 hour time
+                mTimePicker.setTitle("Chọn thời gian");
+                mTimePicker.show();
+            }
+        });
+
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -350,5 +367,10 @@ public class RestaurantInfoFragment extends Fragment implements View.OnClickList
         });
 
         dialog.show();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 }

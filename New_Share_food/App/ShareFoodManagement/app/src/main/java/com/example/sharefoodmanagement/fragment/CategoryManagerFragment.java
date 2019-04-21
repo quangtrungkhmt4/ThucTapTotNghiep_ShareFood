@@ -1,9 +1,11 @@
 package com.example.sharefoodmanagement.fragment;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.PopupMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -233,7 +235,22 @@ public class CategoryManagerFragment extends Fragment implements View.OnClickLis
                         initDialogUpdateCategory(categories.get(position));
                         break;
                     case R.id.deleteCategory:
-                            deleteCategory(categories.get(position).getId_category());
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(mainAdminActivity);
+                        builder.setMessage("Bạn muốn xóa mục này?")
+                                .setCancelable(false)
+                                .setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
+                                    public void onClick(final DialogInterface dialog, final int id) {
+                                        deleteCategory(categories.get(position).getId_category());
+                                        dialog.cancel();
+                                    }
+                                })
+                                .setNegativeButton("Thoát", new DialogInterface.OnClickListener() {
+                                    public void onClick(final DialogInterface dialog, final int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+                        final AlertDialog alert = builder.create();
+                        alert.show();
                         break;
                 }
                 return true;

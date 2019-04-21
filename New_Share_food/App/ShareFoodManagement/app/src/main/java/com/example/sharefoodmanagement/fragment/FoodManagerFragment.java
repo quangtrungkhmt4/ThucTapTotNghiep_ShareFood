@@ -105,7 +105,7 @@ public class FoodManagerFragment extends Fragment implements AdapterView.OnItemL
                 try {
                     if (response.getInt("code") == 0) {
                         JSONArray data = response.getJSONObject("data").getJSONArray("prices");
-                        for (int i=0; i<data.length(); i++){
+                        for (int i = 0; i < data.length(); i++) {
                             Price price = new Gson().fromJson(data.getJSONObject(i).toString(), Price.class);
                             foods.add(price);
                         }
@@ -124,8 +124,8 @@ public class FoodManagerFragment extends Fragment implements AdapterView.OnItemL
         requestQueue.add(jsonObjectRequest);
     }
 
-    private void getManager(int idUser){
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, API.GET_MANAGER+"?id_user=" + idUser, null, new Response.Listener<JSONObject>() {
+    private void getManager(int idUser) {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, API.GET_MANAGER + "?id_user=" + idUser, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
 //                Toast.makeText(LoginActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
@@ -176,8 +176,8 @@ public class FoodManagerFragment extends Fragment implements AdapterView.OnItemL
         return true;
     }
 
-    private void deletePrice(int id){
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.DELETE, API.PRICE_WITH_PAGE+"?id_price=" + id, null, new Response.Listener<JSONObject>() {
+    private void deletePrice(int id) {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.DELETE, API.PRICE_WITH_PAGE + "?id_price=" + id, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
 //                Toast.makeText(LoginActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
@@ -218,7 +218,7 @@ public class FoodManagerFragment extends Fragment implements AdapterView.OnItemL
                                 .setCancelable(false)
                                 .setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
                                     public void onClick(final DialogInterface dialog, final int id) {
-                                        Price  price = foods.get(position);
+                                        Price price = foods.get(position);
                                         deletePrice(price.getId_price());
                                         dialog.cancel();
                                     }
@@ -268,19 +268,21 @@ public class FoodManagerFragment extends Fragment implements AdapterView.OnItemL
                 String recipe = edtRecipe.getText().toString();
                 String pr = edtPrice.getText().toString();
 
-                if (name.isEmpty() || desc.isEmpty() || image.isEmpty() || recipe.isEmpty() || pr.isEmpty()){
+                if (name.isEmpty() || desc.isEmpty() || image.isEmpty() || recipe.isEmpty() || pr.isEmpty()) {
                     Toast.makeText(mainManagerActivity, "Bạn cần nhập đủ thông tin", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
 
-                price.getFood().setName(name);
-                price.getFood().setDescription(desc);
-                price.getFood().setImage(image);
-                price.getFood().setRecipe(recipe);
+                Food food = price.getFood();
+                food.setName(name);
+                food.setDescription(desc);
+                food.setImage(image);
+                food.setRecipe(recipe);
+                price.setFood(food);
                 price.setPrice(Integer.parseInt(pr));
 
-                putFood(price);
+                updateFood(food, price);
                 dialog.dismiss();
             }
         });
@@ -307,13 +309,12 @@ public class FoodManagerFragment extends Fragment implements AdapterView.OnItemL
 
         String[] cate = new String[categories.size() + 1];
         cate[0] = "Chọn danh mục món ăn";
-        for (int i=0; i<categories.size(); i++){
+        for (int i = 0; i < categories.size(); i++) {
             cate[i + 1] = categories.get(i).getName();
         }
 
         final ArrayAdapter<String> item = new ArrayAdapter<>(mainManagerActivity, android.R.layout.simple_list_item_1, cate);
         spinner.setAdapter(item);
-
 
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
@@ -325,14 +326,14 @@ public class FoodManagerFragment extends Fragment implements AdapterView.OnItemL
                 String recipe = edtRecipe.getText().toString();
                 String price = edtPrice.getText().toString();
 
-                if (name.isEmpty() || desc.isEmpty() || image.isEmpty() || recipe.isEmpty() || price.isEmpty()){
+                if (name.isEmpty() || desc.isEmpty() || image.isEmpty() || recipe.isEmpty() || price.isEmpty()) {
                     Toast.makeText(mainManagerActivity, "Bạn cần nhập đủ thông tin", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 int select = spinner.getSelectedItemPosition();
 
-                if (select == 0){
+                if (select == 0) {
                     Toast.makeText(mainManagerActivity, "Bạn cần nhập đủ thông tin", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -399,6 +400,35 @@ public class FoodManagerFragment extends Fragment implements AdapterView.OnItemL
                     if (response.getInt("code") == 0) {
                         Toast.makeText(mainManagerActivity, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
                         getFood();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(mainManagerActivity, error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        requestQueue.add(jsonObjectRequest);
+    }
+
+    private void updateFood(Food food, final Price price) {
+
+        JSONObject param = null;
+        try {
+            param = new JSONObject(new Gson().toJson(food));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, API.POST_FOOD, param, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    if (response.getInt("code") == 0) {
+                        putFood(price);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

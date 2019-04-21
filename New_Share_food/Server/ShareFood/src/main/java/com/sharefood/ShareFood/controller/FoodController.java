@@ -40,4 +40,9 @@ public class FoodController extends AbstractController {
     public ResponseEntity<Response> insert(@RequestBody Food food){
         return responseData(new FoodResponse(foodService.insert(food)));
     }
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/foods")
+    public ResponseEntity<Response> update(@RequestBody Food food){
+        return responseData(new FoodResponse(foodService.update(food)));
+    }
 }

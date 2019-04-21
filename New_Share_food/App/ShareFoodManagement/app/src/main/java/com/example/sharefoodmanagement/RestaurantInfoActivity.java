@@ -91,10 +91,11 @@ public class RestaurantInfoActivity extends AppCompatActivity implements View.On
         tvPhone.setText(currentRestaurant.getPhone().trim());
         tvWeb.setText(currentRestaurant.getWebsite().trim());
         tvProvince.setText(currentRestaurant.getProvince().getDescription().trim());
-        if (currentRestaurant.getLock() == 0){
+        if (currentRestaurant.getLocked() == 0){
             tvStatus.setText(getString(R.string.active));
         }else {
             tvStatus.setText(getString(R.string.lock));
+            imgDelete.setVisibility(View.GONE);
         }
     }
 
@@ -169,5 +170,11 @@ public class RestaurantInfoActivity extends AppCompatActivity implements View.On
             }
         });
         requestQueue.add(jsonObjectRequest);
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 }

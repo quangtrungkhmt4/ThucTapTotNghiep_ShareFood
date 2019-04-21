@@ -19,6 +19,6 @@ public class Restaurant extends AbstractModel {
     private String phone;
     private String website;
     private String logo;
-    private int lock;
+    private int locked;
     private Province province;
 }

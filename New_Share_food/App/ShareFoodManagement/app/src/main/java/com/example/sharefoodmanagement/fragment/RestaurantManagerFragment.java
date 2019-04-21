@@ -1,8 +1,6 @@
 package com.example.sharefoodmanagement.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.SearchView;
 import android.text.TextUtils;
@@ -17,15 +15,11 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.example.sharefoodmanagement.LoginActivity;
 import com.example.sharefoodmanagement.MainAdminActivity;
 import com.example.sharefoodmanagement.R;
 import com.example.sharefoodmanagement.adapter.RestaurantAdapter;
 import com.example.sharefoodmanagement.constant.API;
-import com.example.sharefoodmanagement.constant.Key;
 import com.example.sharefoodmanagement.model.Restaurant;
-import com.example.sharefoodmanagement.model.User;
-import com.example.sharefoodmanagement.util.Preferences;
 import com.example.sharefoodmanagement.util.VolleySingleton;
 import com.google.gson.Gson;
 
@@ -67,7 +61,7 @@ public class RestaurantManagerFragment extends Fragment implements  SearchView.O
         gvRestaurant.setAdapter(adapter);
         gvRestaurant.setTextFilterEnabled(true);
         searchView.setOnQueryTextListener(this);
-        loadRestaurant();
+//        loadRestaurant();
     }
 
     private void loadRestaurant(){
@@ -107,8 +101,8 @@ public class RestaurantManagerFragment extends Fragment implements  SearchView.O
     @Override
     public void onResume() {
         super.onResume();
-//        if (adapter!=null)
-//            loadRestaurant();
+        if (adapter!=null)
+            loadRestaurant();
     }
 
     @Override

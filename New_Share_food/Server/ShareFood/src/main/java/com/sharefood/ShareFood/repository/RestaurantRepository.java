@@ -24,5 +24,10 @@ public interface RestaurantRepository extends CrudRepository<Restaurant, Integer
     @Query(value = "UPDATE tbl_restaurants SET `locked`=1 WHERE id_restaurant = ?1", nativeQuery = true)
     int blockRestaurant(int id);
 
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE tbl_restaurants SET `locked`=0 WHERE id_restaurant = ?1", nativeQuery = true)
+    int unblockRestaurant(int id);
+
 
 }

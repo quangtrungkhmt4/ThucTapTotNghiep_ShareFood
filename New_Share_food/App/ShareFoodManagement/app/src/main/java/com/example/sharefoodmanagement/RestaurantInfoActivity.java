@@ -2,10 +2,10 @@ package com.example.sharefoodmanagement;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
@@ -95,7 +95,7 @@ public class RestaurantInfoActivity extends AppCompatActivity implements View.On
             tvStatus.setText(getString(R.string.active));
         }else {
             tvStatus.setText(getString(R.string.lock));
-            imgDelete.setVisibility(View.GONE);
+//            imgDelete.setVisibility(View.GONE);
         }
     }
 
@@ -133,22 +133,42 @@ public class RestaurantInfoActivity extends AppCompatActivity implements View.On
                 finish();
                 break;
             case R.id.imgDelete:
-                final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage("Bạn muốn khóa nhà hàng này?")
-                        .setCancelable(false)
-                        .setPositiveButton("Khóa", new DialogInterface.OnClickListener() {
-                            public void onClick(final DialogInterface dialog, final int id) {
-                                lockCompany(currentRestaurant.getId());
-                                finish();
-                            }
-                        })
-                        .setNegativeButton("Thoát", new DialogInterface.OnClickListener() {
-                            public void onClick(final DialogInterface dialog, final int id) {
-                                dialog.cancel();
-                            }
-                        });
-                final AlertDialog alert = builder.create();
-                alert.show();
+
+                if (currentRestaurant.getLocked() == 0){
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setMessage("Bạn muốn khóa nhà hàng này?")
+                            .setCancelable(false)
+                            .setPositiveButton("Khóa", new DialogInterface.OnClickListener() {
+                                public void onClick(final DialogInterface dialog, final int id) {
+                                    lockCompany(currentRestaurant.getId());
+                                    finish();
+                                }
+                            })
+                            .setNegativeButton("Thoát", new DialogInterface.OnClickListener() {
+                                public void onClick(final DialogInterface dialog, final int id) {
+                                    dialog.cancel();
+                                }
+                            });
+                    final AlertDialog alert = builder.create();
+                    alert.show();
+                }else {
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setMessage("Bạn muốn mở khóa nhà hàng này?")
+                            .setCancelable(false)
+                            .setPositiveButton("Mở", new DialogInterface.OnClickListener() {
+                                public void onClick(final DialogInterface dialog, final int id) {
+                                    unlockCompany(currentRestaurant.getId());
+                                    finish();
+                                }
+                            })
+                            .setNegativeButton("Thoát", new DialogInterface.OnClickListener() {
+                                public void onClick(final DialogInterface dialog, final int id) {
+                                    dialog.cancel();
+                                }
+                            });
+                    final AlertDialog alert = builder.create();
+                    alert.show();
+                }
                 break;
         }
     }
@@ -161,6 +181,25 @@ public class RestaurantInfoActivity extends AppCompatActivity implements View.On
             public void onResponse(JSONObject response) {
                 if (response.toString().contains("true")) {
                     Toast.makeText(RestaurantInfoActivity.this, getString(R.string.block_success), Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(RestaurantInfoActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        requestQueue.add(jsonObjectRequest);
+    }
+
+    private void unlockCompany(int id) {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET
+                , API.UNBLOCK_RESTAURANT + "?id_restaurant=" + id
+                , null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                if (response.toString().contains("true")) {
+                    Toast.makeText(RestaurantInfoActivity.this, getString(R.string.unblock_success), Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {

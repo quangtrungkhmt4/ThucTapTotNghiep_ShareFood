@@ -23,8 +23,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findAllByPermissionAndLocked(int permission, int lock) {
-        return userRepository.findAllByPermissionAndLocked(permission, lock);
+    public List<User> findAllByPermission(int permission) {
+        return userRepository.findAllByPermission(permission);
     }
 
     @Override

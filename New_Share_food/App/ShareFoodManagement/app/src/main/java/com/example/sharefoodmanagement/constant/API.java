@@ -16,6 +16,7 @@ public class API {
     public static final String GET_ALL_RESTAURANT = IP + "restaurants/getAll";
     public static final String DELETE_RESTAURANT = IP + "restaurants/delete";
     public static final String BLOCK_RESTAURANT = IP + "restaurants/lock";
+    public static final String UNBLOCK_RESTAURANT = IP + "restaurants/unlock";
     public static final String POST_RESTAURANT = IP + "restaurants";
 
     //image

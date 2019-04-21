@@ -45,6 +45,11 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
+    public int unblockRestaurant(int id) {
+        return restaurantRepository.unblockRestaurant(id);
+    }
+
+    @Override
     public Restaurant insert(Restaurant restaurant) {
         return restaurantRepository.save(restaurant);
     }

@@ -53,4 +53,7 @@
     <string name="phone">Số điện thoại</string>
     <string name="website">Website</string>
     <string name="update_food">Cập nhật thông tin món ăn</string>
+    <string name="unblock_success">Mở khóa thành công</string>
+    <string name="unlock_success">Mở khóa tài khoản thành công</string>
+    <string name="success">Thành công</string>
 </resources>

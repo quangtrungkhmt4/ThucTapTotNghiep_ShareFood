@@ -1,19 +1,14 @@
 package com.example.sharefoodmanagement.fragment;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -24,13 +19,9 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.bumptech.glide.Glide;
 import com.example.sharefoodmanagement.MainAdminActivity;
 import com.example.sharefoodmanagement.R;
-import com.example.sharefoodmanagement.SplashActivity;
 import com.example.sharefoodmanagement.adapter.UserAdapter;
 import com.example.sharefoodmanagement.constant.API;
-import com.example.sharefoodmanagement.constant.Key;
-import com.example.sharefoodmanagement.model.Restaurant;
 import com.example.sharefoodmanagement.model.User;
-import com.example.sharefoodmanagement.util.Preferences;
 import com.example.sharefoodmanagement.util.VolleySingleton;
 import com.example.sharefoodmanagement.view.CustomItalyTextView;
 import com.example.sharefoodmanagement.view.CustomListView;
@@ -234,7 +225,8 @@ public class UserManagerFragment extends Fragment implements AdapterView.OnItemC
                         if (data.equals("null")){
 
                         }else {
-                            Toast.makeText(mainAdminActivity, getString(R.string.lock_success), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(mainAdminActivity, getString(R.string.success), Toast.LENGTH_SHORT).show();
+
                             getUser();
                             getManager();
                         }
@@ -256,44 +248,90 @@ public class UserManagerFragment extends Fragment implements AdapterView.OnItemC
     public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
         switch (parent.getId()){
             case R.id.lvManager:
-                final AlertDialog.Builder builder = new AlertDialog.Builder(mainAdminActivity);
-                builder.setMessage("Bạn muốn khóa tài khoản này?")
-                        .setCancelable(false)
-                        .setPositiveButton("Khóa", new DialogInterface.OnClickListener() {
-                            public void onClick(final DialogInterface dialog, final int id) {
-                                User u = managers.get(position);
-                                u.setLocked(1);
-                                updateRequest(u);
-                                dialog.cancel();
-                            }
-                        })
-                        .setNegativeButton("Thoát", new DialogInterface.OnClickListener() {
-                            public void onClick(final DialogInterface dialog, final int id) {
-                                dialog.cancel();
-                            }
-                        });
-                final AlertDialog alert = builder.create();
-                alert.show();
+                User user = managers.get(position);
+                if (user.getLocked() == 0){
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(mainAdminActivity);
+                    builder.setMessage("Bạn muốn khóa tài khoản này?")
+                            .setCancelable(false)
+                            .setPositiveButton("Khóa", new DialogInterface.OnClickListener() {
+                                public void onClick(final DialogInterface dialog, final int id) {
+                                    User u = managers.get(position);
+                                    u.setLocked(1);
+                                    updateRequest(u);
+                                    dialog.cancel();
+                                }
+                            })
+                            .setNegativeButton("Thoát", new DialogInterface.OnClickListener() {
+                                public void onClick(final DialogInterface dialog, final int id) {
+                                    dialog.cancel();
+                                }
+                            });
+                    final AlertDialog alert = builder.create();
+                    alert.show();
+                }else {
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(mainAdminActivity);
+                    builder.setMessage("Bạn muốn mở khóa tài khoản này?")
+                            .setCancelable(false)
+                            .setPositiveButton("Mở", new DialogInterface.OnClickListener() {
+                                public void onClick(final DialogInterface dialog, final int id) {
+                                    User u = managers.get(position);
+                                    u.setLocked(0);
+                                    updateRequest(u);
+                                    dialog.cancel();
+                                }
+                            })
+                            .setNegativeButton("Thoát", new DialogInterface.OnClickListener() {
+                                public void onClick(final DialogInterface dialog, final int id) {
+                                    dialog.cancel();
+                                }
+                            });
+                    final AlertDialog alert = builder.create();
+                    alert.show();
+                }
+
                 break;
             case R.id.lvUsers:
-                final AlertDialog.Builder builder1 = new AlertDialog.Builder(mainAdminActivity);
-                builder1.setMessage("Bạn muốn khóa tài khoản này?")
-                        .setCancelable(false)
-                        .setPositiveButton("Khóa", new DialogInterface.OnClickListener() {
-                            public void onClick(final DialogInterface dialog, final int id) {
-                                User u = users.get(position);
-                                u.setLocked(1);
-                                updateRequest(u);
-                                dialog.cancel();
-                            }
-                        })
-                        .setNegativeButton("Thoát", new DialogInterface.OnClickListener() {
-                            public void onClick(final DialogInterface dialog, final int id) {
-                                dialog.cancel();
-                            }
-                        });
-                final AlertDialog alert1 = builder1.create();
-                alert1.show();
+                User user1 = users.get(position);
+                if (user1.getLocked() == 0){
+                    final AlertDialog.Builder builder1 = new AlertDialog.Builder(mainAdminActivity);
+                    builder1.setMessage("Bạn muốn khóa tài khoản này?")
+                            .setCancelable(false)
+                            .setPositiveButton("Khóa", new DialogInterface.OnClickListener() {
+                                public void onClick(final DialogInterface dialog, final int id) {
+                                    User u = users.get(position);
+                                    u.setLocked(1);
+                                    updateRequest(u);
+                                    dialog.cancel();
+                                }
+                            })
+                            .setNegativeButton("Thoát", new DialogInterface.OnClickListener() {
+                                public void onClick(final DialogInterface dialog, final int id) {
+                                    dialog.cancel();
+                                }
+                            });
+                    final AlertDialog alert1 = builder1.create();
+                    alert1.show();
+                }else {
+                    final AlertDialog.Builder builder1 = new AlertDialog.Builder(mainAdminActivity);
+                    builder1.setMessage("Bạn muốn mở khóa tài khoản này?")
+                            .setCancelable(false)
+                            .setPositiveButton("Mở", new DialogInterface.OnClickListener() {
+                                public void onClick(final DialogInterface dialog, final int id) {
+                                    User u = users.get(position);
+                                    u.setLocked(0);
+                                    updateRequest(u);
+                                    dialog.cancel();
+                                }
+                            })
+                            .setNegativeButton("Thoát", new DialogInterface.OnClickListener() {
+                                public void onClick(final DialogInterface dialog, final int id) {
+                                    dialog.cancel();
+                                }
+                            });
+                    final AlertDialog alert1 = builder1.create();
+                    alert1.show();
+                }
+
                 break;
         }
         return true;

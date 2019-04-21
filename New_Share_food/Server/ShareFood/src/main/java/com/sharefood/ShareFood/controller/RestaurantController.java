@@ -53,6 +53,16 @@ public class RestaurantController extends AbstractController {
         }
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/restaurants/unlock")
+    public ResponseEntity<Response> unlockRestaurant(@RequestParam("id_restaurant") int id_restaurant){
+        int result = restaurantService.unblockRestaurant(id_restaurant);
+        if (result == 1){
+            return responseData(new BooleanResponse(true));
+        }else {
+            return responseData(new BooleanResponse(false));
+        }
+    }
+
     @RequestMapping(method = RequestMethod.POST, value = "/restaurants")
     public ResponseEntity<Response> insert(@RequestBody Restaurant restaurant){
         return responseData(new RestaurantResponse(restaurantService.insert(restaurant)));

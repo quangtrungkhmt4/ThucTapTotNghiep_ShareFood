@@ -26,7 +26,7 @@ public class UserController extends AbstractController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/users/all")
     public ResponseEntity<Response> login(@RequestParam("permission") int permission, @RequestParam("lock") int lock){
-        List<User> users = userService.findAllByPermissionAndLocked(permission, lock);
+        List<User> users = userService.findAllByPermission(permission);
         return responseData(new UsersResponse(users));
     }
 
